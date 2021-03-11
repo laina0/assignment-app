@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  url: 'https://assignment-backend2021.herokuapp.com/api'
 };
