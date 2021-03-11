@@ -7,6 +7,21 @@
     <h1>Liste des assignments</h1>
     <mat-divider></mat-divider>
 
+    <nav>
+        <button mat-raised-button color="primary" (click)="premierePage()">
+          Première
+        </button>
+        <button mat-raised-button color="primary" [disabled]="!hasPrevPage" (click)="pagePrecedente()">
+          Prev
+        </button>
+        <button mat-raised-button color="primary" [disabled]="!hasNextPage" (click)="pageSuivante()">
+          Suiv
+        </button>
+        <button mat-raised-button color="primary" (click)="dernierePage()">
+          Dernière
+        </button>
+    </nav>
+
     <button mat-stroked-button color="warn" (click)="onPopulate()">PopulateDB</button>
 
     <mat-list *ngFor="let a of assignments">
