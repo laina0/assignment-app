@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'https://assignment-backend2021.herokuapp.com/api'
+  url: 'http://localhost:8010/api'
 };
 
 /*
