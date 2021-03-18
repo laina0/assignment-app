@@ -7,6 +7,7 @@ import {
   Router,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -26,14 +27,12 @@ export class AuthGuard implements CanActivate {
     //return true;
     // on n'autorisera l'activation de la route associée que si on est
     // bien un admin
-    return this.authService.isAdmin().then((admin) => {
-      if (admin) {
-        console.log("GUARD : vous êtes admin, autorisation accordée")
+
+    return this.authService.isLoggedIn().then((logged) => {
+      if (logged) {
         return true;
       } else {
-        // On renvoie vers la page d'accueil
-        console.log("GUARD : vous n'êtes pas autorisé à naviguer vers EDIT (vous n'êtes pas admin))");
-        this.router.navigate(['/home']);
+        this.router.navigate(['/authenticate']);
         return false;
       }
     });
