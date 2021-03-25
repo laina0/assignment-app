@@ -39,3 +39,11 @@ mat-card img{
   box-shadow:none !important;
   cursor:pointer;
 }
+
+.assignment-block {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+}

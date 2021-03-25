@@ -19,6 +19,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { RenduDirective } from './shared/rendu.directive';
@@ -90,7 +92,8 @@ const routes: Routes = [
     NgxPaginationModule,
     ReactiveFormsModule,
     MatToolbarModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    DragDropModule
   ],
   providers: [
     {

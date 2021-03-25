@@ -30,3 +30,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 https://zoaibkhan.com/blog/create-a-responsive-card-grid-in-angular-using-flex-layout-part-1/
 https://material.io/components/cards
 https://material.io/components/cards#anatomy
+
+## Lien utile pour le drag and drop
+https://www.positronx.io/angular-8-drag-and-drop-tutorial-with-example/
