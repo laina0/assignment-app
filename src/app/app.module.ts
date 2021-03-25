@@ -20,6 +20,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 import { AssignmentsComponent } from './assignments/assignments.component';
@@ -93,7 +94,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatToolbarModule,
     FlexLayoutModule,
-    DragDropModule
+    DragDropModule,
+    MatExpansionModule
   ],
   providers: [
     {
