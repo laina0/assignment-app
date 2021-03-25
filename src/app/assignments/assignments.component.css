@@ -1,8 +1,41 @@
-.container {
-  display: flex;
-  flex-direction: column;
+mat-toolbar {
+  justify-content: space-between;
+}
+
+.content {
+  padding: 16px 0;
+}
+
+.content > mat-card {
+  margin-bottom: 16px;
 }
 
 .ajouterBtn {
   align-self: flex-end;
+}
+
+
+mat-card img{
+  object-fit: cover; /*this makes the image in src fit to the size specified below*/
+  width: 100%; /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+  height: 80%;
+}
+
+.mat-tab-label {
+  font-size: 1rem !important;
+}
+
+.mat-card-title {
+  font-size: 0.8rem !important;
+}
+
+.mat-card-content {
+  font-size: 0.8rem !important;
+  min-height: 30px;
+}
+
+.mat-card-add-button {
+  border: 1px dashed grey;
+  box-shadow:none !important;
+  cursor:pointer;
 }

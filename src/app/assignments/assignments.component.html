@@ -1,47 +1,32 @@
-<main class="container">
-    <a routerLink="/add" class="ajouterBtn">
-        <button mat-flat-button color="accent">
-      Ajouter un assignment
-    </button>
-    </a>
-    <h1>Liste des assignments</h1>
-    <mat-divider></mat-divider>
-
-    <nav>
-        <button mat-raised-button color="primary" (click)="premierePage()">
-          Première
-        </button>
-        <button mat-raised-button color="primary" [disabled]="!hasPrevPage" (click)="pagePrecedente()">
-          Prev
-        </button>
-        <button mat-raised-button color="primary" [disabled]="!hasNextPage" (click)="pageSuivante()">
-          Suiv
-        </button>
-        <button mat-raised-button color="primary" (click)="dernierePage()">
-          Dernière
-        </button>
-    </nav>
-
-    <button mat-stroked-button color="warn" (click)="onPopulate()">PopulateDB</button>
-
-    <mat-list *ngFor="let a of assignments">
-        <nav>
-            <a routerLink="/assignment/{{a.id}}">
-                <h3 mat-subheader>{{a.dateDeRendu | date}}</h3>
-                <mat-list-item>
-                    <mat-divider></mat-divider>
-
-                    <p *ngIf="a.rendu; else nonsoumis" appRendu>
-                        {{a.nom}}, rendu par l'élève.
-                    </p>
-                    <ng-template #nonsoumis>
-                        <p appNonRendu>
-                            {{a.nom}}, non encore rendu par l'élève.
-                        </p>
-                    </ng-template>
-
-                </mat-list-item>
-            </a>
-        </nav>
-    </mat-list>
-</main>
+<mat-toolbar color="primary">
+  <span>Liste des assignments</span>
+</mat-toolbar>
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutAlign="start start">
+    <div fxFlex="50">
+      <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="15px grid">
+        <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let a of assignments">
+          <mat-card class="mat-elevation-z4">
+              <mat-card-header>
+                <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + a.cours.photoProf + ')'}"></div>
+                <mat-card-title>{{ a.nom }}</mat-card-title>
+              </mat-card-header>
+              <img mat-card-sm-image [src]="a.cours.photoMatiere">
+              <mat-card-content>
+                <span> {{ a.nom }} </span>
+              </mat-card-content>
+              <mat-card-actions fxFlexAlign="end" align="end">
+                <button mat-icon-button>
+                  <mat-icon>mode_edit</mat-icon>
+                </button>
+                <button mat-icon-button>
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </mat-card-actions>  
+          </mat-card>
+        </div>
+      </div>
+    </div>
+    <div fxFlex="50"></div>
+  </div>
+</div>

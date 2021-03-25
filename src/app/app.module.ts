@@ -17,6 +17,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { RenduDirective } from './shared/rendu.directive';
 import { NonRenduDirective } from './shared/non-rendu.directive';
@@ -85,7 +88,9 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     NgxPaginationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatToolbarModule,
+    FlexLayoutModule
   ],
   providers: [
     {
