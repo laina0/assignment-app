@@ -2,8 +2,8 @@
     <span>Liste des assignments</span>
 </mat-toolbar>
 <div class="content">
-    <div fxLayout="row wrap" fxLayoutAlign="start start">
-        <div fxFlex="50">
+    <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px grid">
+        <div fxFlex="50" class="assignment-content">
             <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="15px grid">
                 <div cdkDropList #assignment="cdkDropList" [cdkDropListData]="assignments" [cdkDropListConnectedTo]="[doneAssignmentList]" cdkDrag fxFlex="20%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let assignment of assignments">
                     <mat-card class="mat-elevation-z5" class="assignment-block">
@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <div fxFlex="50">
+        <div fxFlex="50" class="assignment-content">
             <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="15px grid">
                 <div cdkDropList #doneAssignmentList="cdkDropList">
 

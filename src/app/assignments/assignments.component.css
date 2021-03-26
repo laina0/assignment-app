@@ -52,3 +52,11 @@ mat-card img {
 mat-card::ng-deep.mat-card-header-text {
     width: 100%;
 }
+
+.assignment-content {
+    border: 1px solid;
+    width: 45%;
+    margin: 0 25px 25px 0;
+    display: inline-block;
+    vertical-align: top;  
+}
