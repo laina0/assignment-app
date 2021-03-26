@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentsService } from '../shared/assignments.service';
@@ -9,7 +10,8 @@ import { Assignment } from './assignment.model';
   styleUrls: ['./assignments.component.css'],
 })
 export class AssignmentsComponent implements OnInit {
-  assignments:Assignment[];
+  assignments:Assignment[] = [];
+  assignmentsRendus: Assignment[] = [];
   page: number=1;
   limit: number=10;
   totalDocs: number;
@@ -49,7 +51,6 @@ export class AssignmentsComponent implements OnInit {
       this.prevPage = data.prevPage;
       this.hasNextPage = data.hasNextPage;
       this.nextPage = data.nextPage;
-      console.log("données reçues");
     });
   }
 
@@ -59,7 +60,6 @@ export class AssignmentsComponent implements OnInit {
     //this.assignments.splice(index, 1);
     this.assignmentsService.deleteAssignment(event)
       .subscribe(message => {
-        console.log(message);
       });
   }
 
@@ -108,5 +108,18 @@ export class AssignmentsComponent implements OnInit {
         limit:this.limit,
       }
     });
+  }
+
+  onDrop(event: CdkDragDrop<Assignment[]>) {
+    
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
+    console.log(this.assignmentsRendus);
   }
 }

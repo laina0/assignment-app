@@ -84,7 +84,6 @@ export class AssignmentsService {
 
     return this.http.delete(url).pipe(
       switchMap((data: any) => {
-        console.log(data);
         return this.http.post<string>(url, data, {}).pipe(
           // tslint:disable-next-line: no-shadowed-variable
           switchMap(() => {
@@ -94,6 +93,8 @@ export class AssignmentsService {
       })
     );
   }
+
+  // Méthode utiliser pour le drag and drop
 
   // tslint:disable-next-line: typedef
   populate(): Observable<any> {
