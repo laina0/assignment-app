@@ -120,6 +120,5 @@ export class AssignmentsComponent implements OnInit {
         event.previousIndex,
         event.currentIndex);
     }
-    console.log(this.assignmentsRendus);
   }
 }

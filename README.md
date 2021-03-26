@@ -36,3 +36,6 @@ https://www.positronx.io/angular-8-drag-and-drop-tutorial-with-example/
 
 ## Lien utile pour l'utilisation de l'expansion panel
 https://dev.to/ama/how-to-use-angular-material-expansion-panel-and-accordion-3i11
+
+## Lien utile pour le modal
+https://material.angular.io/components/dialog/examples
