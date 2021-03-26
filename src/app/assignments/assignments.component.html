@@ -3,9 +3,10 @@
 </mat-toolbar>
 <div class="content">
     <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px grid">
-        <div fxFlex="50" class="assignment-content">
-            <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="15px grid">
-                <div cdkDropList #assignment="cdkDropList" [cdkDropListData]="assignments" [cdkDropListConnectedTo]="[doneAssignmentList]" cdkDrag fxFlex="20%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let assignment of assignments">
+        <div fxFlex="auto" class="assignment-content">            
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="15px grid" cdkDropList 
+            #assignmentList="cdkDropList" [cdkDropListData]="assignments" [cdkDropListConnectedTo]="[doneAssignmentList]" class="assignment-list">
+                <div cdkDrag fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let assignment of assignments">
                     <mat-card class="mat-elevation-z5" class="assignment-block">
                         <mat-card-header>
                             <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + assignment.cours.photoProf + ')'}"></div>
@@ -15,18 +16,7 @@
                         </mat-card-header>
                         <img mat-card-sm-image [src]="assignment.cours.photoMatiere">
                         <mat-card-content>
-                            <mat-accordion>
-                                <mat-expansion-panel>
-                                    <mat-expansion-panel-header>
-                                        <h4><i class="fas fa-xs fa-info-circle"></i> Remarque</h4>
-                                    </mat-expansion-panel-header>
-                                    <ng-template matExpansionPanelContent>
-                                        <app-howto-get-started>
-                                            {{ assignment.remarque }}
-                                        </app-howto-get-started>
-                                    </ng-template>
-                                </mat-expansion-panel>
-                            </mat-accordion>
+                            <p>Test</p>
                         </mat-card-content>
                         <mat-card-actions fxFlexAlign="end" align="end">
                             <button mat-icon-button>
@@ -40,11 +30,31 @@
                 </div>
             </div>
         </div>
-        <div fxFlex="50" class="assignment-content">
-            <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="15px grid">
-                <div cdkDropList #doneAssignmentList="cdkDropList">
-
-                </div>
+        <div fxFlex="auto" class="assignment-content content-left" cdkDropList #doneAssignmentList="cdkDropList" 
+        [cdkDropListData]="assignmentsRendus" [cdkDropListConnectedTo]="[assignmentList]" (cdkDropListDropped)="onDrop($event)">
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="15px grid" class="assignment-list">
+                <div fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="33%" cdkDrag *ngFor="let assignment of assignmentsRendus">
+                    <mat-card class="mat-elevation-z5" class="assignment-block">
+                        <mat-card-header>
+                            <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + assignment.cours.photoProf + ')'}"></div>
+                            <mat-card-title>{{ assignment.nom }}</mat-card-title>
+                            <mat-card-subtitle>{{ assignment.auteur }}</mat-card-subtitle>
+                            <mat-card-subtitle>{{ assignment.dateDeRendu | date }}</mat-card-subtitle>
+                        </mat-card-header>
+                        <img mat-card-sm-image [src]="assignment.cours.photoMatiere">
+                        <mat-card-content>
+                            <p>Test</p>
+                        </mat-card-content>
+                        <mat-card-actions fxFlexAlign="end" align="end">
+                            <button mat-icon-button>
+                          <mat-icon>mode_edit</mat-icon>
+                        </button>
+                            <button mat-icon-button>
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>          
             </div>
         </div>
     </div>
