@@ -34,6 +34,7 @@ import { EditAssigmentComponent } from './assignments/edit-assigment/edit-assigm
 import { AuthGuard } from './shared/auth.guard';
 import { LoginFormComponent } from './authentication/login-form/login-form.component';
 import { AuthInterceptor } from './shared/auth.interceptors';
+import { DialogModule } from './dialog/dialog.module';
 
 const routes: Routes = [
   {
@@ -95,7 +96,8 @@ const routes: Routes = [
     MatToolbarModule,
     FlexLayoutModule,
     DragDropModule,
-    MatExpansionModule
+    MatExpansionModule,
+    DialogModule
   ],
   providers: [
     {

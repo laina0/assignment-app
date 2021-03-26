@@ -39,3 +39,4 @@ https://dev.to/ama/how-to-use-angular-material-expansion-panel-and-accordion-3i1
 
 ## Lien utile pour le modal
 https://material.angular.io/components/dialog/examples
+https://www.codegram.com/blog/playing-with-dialogs-and-ng-templates/
