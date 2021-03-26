@@ -11,7 +11,7 @@ import { User } from '../user.model';
 })
 export class LoginFormComponent implements OnInit {
 
- form: FormGroup;
+  form: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,

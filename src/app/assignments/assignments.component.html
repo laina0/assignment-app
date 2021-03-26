@@ -3,9 +3,8 @@
 </mat-toolbar>
 <div class="content">
     <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px grid">
-        <div fxFlex="auto" class="assignment-content">            
-            <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="15px grid" cdkDropList 
-            #assignmentList="cdkDropList" [cdkDropListData]="assignments" [cdkDropListConnectedTo]="[doneAssignmentList]" class="assignment-list">
+        <div fxFlex="auto" class="assignment-content">
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="15px grid" cdkDropList #assignmentList="cdkDropList" [cdkDropListData]="assignments" [cdkDropListConnectedTo]="[doneAssignmentList]" class="assignment-list">
                 <div cdkDrag fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let assignment of assignments">
                     <mat-card class="mat-elevation-z5" class="assignment-block">
                         <mat-card-header>
@@ -30,8 +29,7 @@
                 </div>
             </div>
         </div>
-        <div fxFlex="auto" class="assignment-content content-left" cdkDropList #doneAssignmentList="cdkDropList" 
-        [cdkDropListData]="assignmentsRendus" [cdkDropListConnectedTo]="[assignmentList]" (cdkDropListDropped)="onDrop($event)">
+        <div fxFlex="auto" class="assignment-content content-left" cdkDropList #doneAssignmentList="cdkDropList" [cdkDropListData]="assignmentsRendus" [cdkDropListConnectedTo]="[assignmentList]" (cdkDropListDropped)="onDrop($event)">
             <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="15px grid" class="assignment-list">
                 <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" cdkDrag *ngFor="let assignment of assignmentsRendus">
                     <mat-card class="mat-elevation-z5" class="assignment-block">
@@ -54,8 +52,23 @@
                         </button>
                         </mat-card-actions>
                     </mat-card>
-                </div>          
+                </div>
             </div>
         </div>
     </div>
 </div>
+<ng-template #notationDialogTemplate>
+    <form [formGroup]="formNotation" (ngSubmit)="submit()">
+        <mat-form-field class="example-full-width">
+            <mat-label>Note</mat-label>
+            <input type="number" matInput formControlName="notation" name="notation">
+        </mat-form-field>
+        <button mat-raised-button type="submit" [color]="color" [disabled]="disabled">
+            Modifier
+        </button>
+        <button mat-raised-button [color]="color" [disabled]="disabled" (click)="closeDialog()">
+            Annuler
+        </button>
+
+    </form>
+</ng-template>
