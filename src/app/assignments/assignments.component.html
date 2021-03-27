@@ -1,6 +1,10 @@
 <mat-toolbar color="primary">
     <span>Liste des assignments</span>
 </mat-toolbar>
+<button mat-raised-button (click)="onPopulate()">
+    PopulateDB
+</button>
+
 <div class="content">
     <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px grid">
         <div fxFlex="auto" class="assignment-content">

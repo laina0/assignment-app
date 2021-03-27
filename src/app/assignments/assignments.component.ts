@@ -59,7 +59,8 @@ export class AssignmentsComponent implements OnInit {
   getAssignments() {
     this.assignmentsService.getAssignmentsPagine(this.page, this.limit)
     .subscribe(data => {
-      this.assignments = data.docs;
+      this.assignments = data.docs.filter(obj => obj.note === 'na');
+      this.assignmentsRendus = data.docs.filter(objRendu => (objRendu.note !== 'na' && objRendu.note !== 0));
       this.page = data.page;
       this.limit = data.limit;
       this.totalDocs = data.totalDocs;
@@ -140,7 +141,7 @@ export class AssignmentsComponent implements OnInit {
   }
 
   // Pour la partie notation sur le drag&drop
-  // On a choisit d'utiliser un dialog pour pouvoir modifier les notes du rendu
+  // On a choisi d'utiliser un dialog pour pouvoir modifier le note et le remarque du rendu
   // Voici l'url qu'on a utilisé pour se documenter
   // https://www.codegram.com/blog/playing-with-dialogs-and-ng-templates/
   // tslint:disable-next-line: typedef
@@ -161,14 +162,12 @@ export class AssignmentsComponent implements OnInit {
       this.assignmentsService
           .updateAssignment(assignment)
           .subscribe((message) => {
-              console.log(message);
+            transferArrayItem(event.previousContainer.data,
+              event.container.data,
+              event.previousIndex,
+              event.currentIndex);
+            this.closeDialog();
       });
-
-      transferArrayItem(event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex);
-      this.closeDialog();
     }
   }
 
