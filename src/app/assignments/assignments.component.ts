@@ -59,8 +59,8 @@ export class AssignmentsComponent implements OnInit {
   getAssignments() {
     this.assignmentsService.getAssignmentsPagine(this.page, this.limit)
     .subscribe(data => {
-      this.assignments = data.docs.filter(obj => obj.note === 'na');
-      this.assignmentsRendus = data.docs.filter(objRendu => (objRendu.note !== 'na' && objRendu.note !== 0));
+      this.assignments = data.docs.filter(obj => obj.note === 'na' && obj.rendu === false);
+      this.assignmentsRendus = data.docs.filter(objRendu => objRendu.rendu === true && (objRendu.note !== 'na' && objRendu.note !== 0));
       this.page = data.page;
       this.limit = data.limit;
       this.totalDocs = data.totalDocs;
@@ -158,6 +158,7 @@ export class AssignmentsComponent implements OnInit {
       const assignment = event.previousContainer.data[event.previousIndex];
       assignment.note = this.formNotation.get('notation').value;
       assignment.remarque = this.formNotation.get('remarque').value;
+      assignment.rendu = true;
 
       this.assignmentsService
           .updateAssignment(assignment)
