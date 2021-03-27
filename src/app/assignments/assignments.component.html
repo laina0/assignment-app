@@ -22,10 +22,10 @@
                             <p>Test</p>
                         </mat-card-content>
                         <mat-card-actions fxFlexAlign="end" align="end">
-                            <button mat-icon-button>
+                            <button (click)="dispatchDialog()" mat-icon-button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above" matTooltip="Modifier" matTooltipHideDelay="10">
                           <mat-icon>mode_edit</mat-icon>
                         </button>
-                            <button mat-icon-button>
+                            <button mat-icon-button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above" matTooltip="Supprimer" matTooltipHideDelay="10">
                           <mat-icon>delete</mat-icon>
                         </button>
                         </mat-card-actions>
@@ -48,11 +48,11 @@
                             <p>Test</p>
                         </mat-card-content>
                         <mat-card-actions fxFlexAlign="end" align="end">
-                            <button mat-icon-button>
+                            <button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above" matTooltip="Modifier" matTooltipHideDelay="10">
                           <mat-icon>mode_edit</mat-icon>
                         </button>
                             <button mat-icon-button>
-                          <mat-icon>delete</mat-icon>
+                          <mat-icon mat-icon-button #tooltip="matTooltip" matTooltipPosition="above" matTooltip="Supprimer" matTooltipHideDelay="10">delete</mat-icon>
                         </button>
                         </mat-card-actions>
                     </mat-card>
