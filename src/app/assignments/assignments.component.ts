@@ -154,6 +154,16 @@ export class AssignmentsComponent implements OnInit {
   submit(): void {
     if (this.formNotation.valid) {
       const event = this.eventAssignment;
+      const assignment = event.previousContainer.data[event.previousIndex];
+      assignment.note = this.formNotation.get('notation').value;
+      assignment.remarque = this.formNotation.get('remarque').value;
+
+      this.assignmentsService
+          .updateAssignment(assignment)
+          .subscribe((message) => {
+              console.log(message);
+      });
+
       transferArrayItem(event.previousContainer.data,
         event.container.data,
         event.previousIndex,
@@ -175,6 +185,7 @@ export class AssignmentsComponent implements OnInit {
   private initNotationForm() {
     return this.formBuilder.group({
       notation: [null, [Validators.required, Validators.max(20), Validators.min(0)]],
+      remarque: [null]
     });
   }
 }
