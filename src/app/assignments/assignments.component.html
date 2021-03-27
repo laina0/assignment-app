@@ -1,6 +1,10 @@
 <mat-toolbar color="primary">
     <span>Liste des assignments</span>
 </mat-toolbar>
+<button mat-raised-button (click)="onPopulate()">
+    PopulateDB
+</button>
+
 <div class="content">
     <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px grid">
         <div fxFlex="auto" class="assignment-content">
@@ -18,10 +22,10 @@
                             <p>Test</p>
                         </mat-card-content>
                         <mat-card-actions fxFlexAlign="end" align="end">
-                            <button mat-icon-button>
+                            <button (click)="dispatchDialog()" mat-icon-button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above" matTooltip="Modifier" matTooltipHideDelay="10">
                           <mat-icon>mode_edit</mat-icon>
                         </button>
-                            <button mat-icon-button>
+                            <button mat-icon-button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above" matTooltip="Supprimer" matTooltipHideDelay="10">
                           <mat-icon>delete</mat-icon>
                         </button>
                         </mat-card-actions>
@@ -44,11 +48,11 @@
                             <p>Test</p>
                         </mat-card-content>
                         <mat-card-actions fxFlexAlign="end" align="end">
-                            <button mat-icon-button>
+                            <button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above" matTooltip="Modifier" matTooltipHideDelay="10">
                           <mat-icon>mode_edit</mat-icon>
                         </button>
                             <button mat-icon-button>
-                          <mat-icon>delete</mat-icon>
+                          <mat-icon mat-icon-button #tooltip="matTooltip" matTooltipPosition="above" matTooltip="Supprimer" matTooltipHideDelay="10">delete</mat-icon>
                         </button>
                         </mat-card-actions>
                     </mat-card>
@@ -58,17 +62,26 @@
     </div>
 </div>
 <ng-template #notationDialogTemplate>
-    <form [formGroup]="formNotation" (ngSubmit)="submit()">
-        <mat-form-field class="example-full-width">
-            <mat-label>Note</mat-label>
-            <input type="number" matInput formControlName="notation" name="notation">
-        </mat-form-field>
-        <button mat-raised-button type="submit" [color]="color" [disabled]="disabled">
-            Modifier
-        </button>
-        <button mat-raised-button [color]="color" [disabled]="disabled" (click)="closeDialog()">
-            Annuler
-        </button>
+    <div class="container" novalidate>
+        <form [formGroup]="formNotation" (ngSubmit)="submit()" class="form">
+            <mat-form-field class="form-element">
+                <mat-label>Note</mat-label>
+                <input type="number" matInput formControlName="notation" name="notation">
+            </mat-form-field>
 
-    </form>
+            <mat-form-field class="form-element">
+                <mat-label>Remarque</mat-label>
+                <textarea matInput matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="remarque" name="remarque"></textarea>
+            </mat-form-field>
+
+            <div class="form-element">
+                <button mat-raised-button type="submit" mat-flat-button [color]="primary" [disabled]="!formNotation.valid">
+                    Modifier
+                </button>
+                <button mat-raised-button [color]="color" [disabled]="disabled" (click)="closeDialog()">
+                    Annuler
+                </button>
+            </div>
+        </form>
+    </div>
 </ng-template>

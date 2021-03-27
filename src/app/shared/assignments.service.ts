@@ -64,14 +64,8 @@ export class AssignmentsService {
 
     // let index = this.assignments.indexOf(assignment);
     const url = `${environment.url}/assignments`;
-    const data = {
-      _id: assignment._id,
-      nom: assignment.nom,
-      dateDeRendu: assignment.dateDeRendu,
-      rendu: assignment.rendu,
-    };
 
-    return this.http.put<string>(url, data, {}).pipe(
+    return this.http.put<string>(url, assignment, {}).pipe(
       // tslint:disable-next-line: no-shadowed-variable
       switchMap((data: any) => {
         return of(data);
@@ -98,7 +92,6 @@ export class AssignmentsService {
 
   // tslint:disable-next-line: typedef
   populate(): Observable<any> {
-    
     const url = `${environment.url}/assignments`;
     const results = [];
     // tslint:disable-next-line: deprecation
