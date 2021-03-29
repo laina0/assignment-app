@@ -1,6 +1,9 @@
-<mat-toolbar color="primary">
-    <span>Liste des assignments</span>
-</mat-toolbar>
+<div class="wrapper">
+    <mat-progress-bar mode="determinate" value="60" color="accent" class="progressbar"></mat-progress-bar>
+    <mat-toolbar color="primary">
+        <span>Liste des assignments</span>
+    </mat-toolbar>
+</div>
 <button mat-raised-button (click)="onPopulate()">
     PopulateDB
 </button>

@@ -1,11 +1,12 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogData } from '../dialog/models/dialog-data.model';
 import { DialogFactoryService } from '../dialog/sevices/dialog-factory.service';
 import { DialogService } from '../dialog/sevices/dialog.service';
 import { AssignmentsService } from '../shared/assignments.service';
+import { LoaderService } from '../shared/loader.service';
 import { Assignment } from './assignment.model';
 
 @Component({
@@ -24,11 +25,21 @@ export class AssignmentsComponent implements OnInit {
   prevPage: number;
   hasNextPage: boolean;
   nextPage: number;
+  isLoader: boolean;
 
+  // Pour la partie progessbar, nous avons pris le bout du code sur le site:
+  // https://stackblitz.com/edit/material-loadingbar?file=app%2Fapp.component.ts
+  // https://material.angular.io/components/progress-bar/api
+  @Input() value: number;
+
+  // Nous avons pris la partie du code du boite de dialogue sur l'url suivant:
+  // https://www.codegram.com/blog/playing-with-dialogs-and-ng-templates/
   dialog: DialogService;
   @ViewChild('notationDialogTemplate')
   notationDialogTemplate: TemplateRef<any>;
 
+  // Nous avois pris la partie du code du drag&drop sur le site suivant:
+  // https://www.positronx.io/angular-7-drag-drop-tutorial-material-library/
   eventAssignment: CdkDragDrop<Assignment[]>;
 
   formNotation: FormGroup;
@@ -38,7 +49,8 @@ export class AssignmentsComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private dialogFactoryService: DialogFactoryService,
-              private formBuilder: FormBuilder) {}
+              private formBuilder: FormBuilder,
+              private loaderService: LoaderService) {}
 
   // tslint:disable-next-line: typedef
   ngOnInit() {
