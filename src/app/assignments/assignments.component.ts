@@ -41,6 +41,7 @@ export class AssignmentsComponent implements OnInit {
   // Nous avois pris la partie du code du drag&drop sur le site suivant:
   // https://www.positronx.io/angular-7-drag-drop-tutorial-material-library/
   eventAssignment: CdkDragDrop<Assignment[]>;
+  currentAssignment: Assignment;
 
   formNotation: FormGroup;
 
@@ -95,7 +96,6 @@ export class AssignmentsComponent implements OnInit {
 
   onPopulate() {
     this.assignmentsService.populate().subscribe(message => {
-      console.log(message);
       return this.router.navigate(['/home'], {replaceUrl: true});
     });
   }
@@ -141,12 +141,18 @@ export class AssignmentsComponent implements OnInit {
     });
   }
 
+  onEditAssignement(assignment: Assignment) {
+    this.currentAssignment = assignment;
+    this.dispatchDialog();
+  }
+
   // tslint:disable-next-line: typedef
   onDrop(event: CdkDragDrop<Assignment[]>) {
-
+    this.currentAssignment = null;
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
+      this.currentAssignment = event.previousContainer.data[event.previousIndex];
       this.eventAssignment = event;
       this.dispatchDialog();
     }
@@ -157,7 +163,7 @@ export class AssignmentsComponent implements OnInit {
   // Voici l'url qu'on a utilisé pour se documenter
   // https://www.codegram.com/blog/playing-with-dialogs-and-ng-templates/
   // tslint:disable-next-line: typedef
-  dispatchDialog() {
+  private dispatchDialog() {
     this.openDialog({
       headerText: 'Veuillez ajouter une note au rendu',
       template: this.notationDialogTemplate
@@ -166,20 +172,19 @@ export class AssignmentsComponent implements OnInit {
 
   submit(): void {
     if (this.formNotation.valid) {
-      const event = this.eventAssignment;
-      const assignment = event.previousContainer.data[event.previousIndex];
-      assignment.note = this.formNotation.get('notation').value;
-      assignment.remarque = this.formNotation.get('remarque').value;
-      assignment.rendu = true;
+      this.currentAssignment.note = this.formNotation.get('notation').value;
+      this.currentAssignment.remarque = this.formNotation.get('remarque').value;
+      this.currentAssignment.rendu = true;
 
       this.assignmentsService
-          .updateAssignment(assignment)
+          .updateAssignment(this.currentAssignment)
           .subscribe((message) => {
-            transferArrayItem(event.previousContainer.data,
-              event.container.data,
-              event.previousIndex,
-              event.currentIndex);
+            this.eventAssignment && transferArrayItem(this.eventAssignment.previousContainer.data,
+              this.eventAssignment.container.data,
+              this.eventAssignment.previousIndex,
+              this.eventAssignment.currentIndex);
             this.closeDialog();
+            this.getAssignments();
       });
     }
   }
