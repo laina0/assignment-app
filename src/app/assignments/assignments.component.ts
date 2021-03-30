@@ -6,7 +6,6 @@ import { DialogData } from '../dialog/models/dialog-data.model';
 import { DialogFactoryService } from '../dialog/sevices/dialog-factory.service';
 import { DialogService } from '../dialog/sevices/dialog.service';
 import { AssignmentsService } from '../shared/assignments.service';
-import { LoaderService } from '../shared/loader.service';
 import { Assignment } from './assignment.model';
 
 @Component({
@@ -50,14 +49,14 @@ export class AssignmentsComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private dialogFactoryService: DialogFactoryService,
-              private formBuilder: FormBuilder,
-              private loaderService: LoaderService) {}
+              private formBuilder: FormBuilder) {}
 
   // tslint:disable-next-line: typedef
   ngOnInit() {
 
     // on initialise le formulaire pour la notation
     this.formNotation = this.initNotationForm();
+    this.isLoader = false;
 
     // on utilise le service pour récupérer les
     // assignments à afficher
@@ -70,6 +69,7 @@ export class AssignmentsComponent implements OnInit {
   }
 
   getAssignments() {
+    this.isLoader = true;
     this.assignmentsService.getAssignmentsPagine(this.page, this.limit)
     .subscribe(data => {
       this.assignments = data.docs.filter(obj => obj.note === 'na' && obj.rendu === false);
@@ -82,6 +82,7 @@ export class AssignmentsComponent implements OnInit {
       this.prevPage = data.prevPage;
       this.hasNextPage = data.hasNextPage;
       this.nextPage = data.nextPage;
+      this.isLoader = false;
     });
   }
 

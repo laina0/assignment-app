@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <mat-progress-bar mode="determinate" value="60" color="accent" class="progressbar"></mat-progress-bar>
+    <mat-progress-bar mode="indeterminate" *ngIf="isLoader" value="60" color="accent" class="progressbar"></mat-progress-bar>
     <mat-toolbar color="primary">
         <span>Liste des assignments</span>
     </mat-toolbar>
