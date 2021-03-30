@@ -31,9 +31,9 @@ export class LoginFormComponent implements OnInit {
       this.authService.logIn(email, password)
         .subscribe(data => {
           this.error = false;
-          this.router.navigate(['/home'])
-          this.form.reset()
-        },err => {
+          this.router.navigate(['/home']);
+          this.form.reset();
+        }, err => {
             this.error = true;
             this.errorMessage = err.error.message;
           }

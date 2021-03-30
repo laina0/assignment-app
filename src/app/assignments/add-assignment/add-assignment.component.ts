@@ -18,45 +18,38 @@ export class AddAssignmentComponent implements OnInit {
 
   isEditable = true;
 
-  nom  = '';  
-  auteur = '';
-  dateDeRendu  = null;
-
-
-  constructor(private assignmentsService:AssignmentsService,
-              private router:Router,
-              private _formBuilder: FormBuilder) {}
+  constructor(private assignmentsService: AssignmentsService,
+              private router: Router,
+              private formBuilder: FormBuilder) {}
 
   ngOnInit(){
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+    this.firstFormGroup = this.formBuilder.group({
+      name: ['', Validators.required]
     });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+    this.secondFormGroup = this.formBuilder.group({
+      date: ['', Validators.required]
     });
-    this.thirdFormGroup = this._formBuilder.group({
-      thirdCtrl: ['', Validators.required]
+    this.thirdFormGroup = this.formBuilder.group({
+      author: ['', Validators.required]
     });
 
   }
 
-  
   onSubmit(event) {
-    
-    const nouvelAssignment = new Assignment();
-    nouvelAssignment.nom = this.firstFormGroup.value;
-    nouvelAssignment.dateDeRendu = this.secondFormGroup.value; 
-    nouvelAssignment.auteur = this.thirdFormGroup.value; 
-    nouvelAssignment.rendu = false;
 
-    console.log(nouvelAssignment);
-    this.assignmentsService.addAssignment(nouvelAssignment)
-      .subscribe(message => {
-        console.log(message);
-        console.log('finish');
-         // et on navigue vers la page d'accueil qui affiche la liste
-         
-      });
+    if (this.firstFormGroup.valid && this.secondFormGroup.valid && this.thirdFormGroup.valid) {
+      const assignment = new Assignment();
+      assignment.nom = this.firstFormGroup.get('name').value;
+      assignment.dateDeRendu = this.secondFormGroup.get('date').value;
+      assignment.auteur = this.thirdFormGroup.get('author').value;
+      assignment.rendu = false;
+      console.log(assignment);
+      /*this.assignmentsService.addAssignment(nouvelAssignment)
+        .subscribe(message => {
+          console.log(message);
+          console.log('finish');
+          // et on navigue vers la page d'accueil qui affiche la liste
+        });*/
+    }
   }
-  
 }

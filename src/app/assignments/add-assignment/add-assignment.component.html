@@ -1,54 +1,52 @@
- 
-  <mat-horizontal-stepper linear #stepper>
+<mat-horizontal-stepper linear #stepper>
     <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
-      <form [formGroup]="firstFormGroup" #formone="ngForm">
-        <ng-template matStepLabel>Nom de l'assignment</ng-template>
-        <mat-form-field>
-          <mat-label>Nom</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Nom assignment" required required [(ngModel)]="nom" name="nom">
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperNext>Suivant</button>
-        </div>
-      </form>
+        <form [formGroup]="firstFormGroup" #formone="ngForm">
+            <ng-template matStepLabel>Nom de l'assignment</ng-template>
+            <mat-form-field>
+                <mat-label>Nom</mat-label>
+                <input matInput formControlName="firstCtrl" placeholder="Nom assignment" formControlName="name" name="name">
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperNext>Suivant</button>
+            </div>
+        </form>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
-      <form [formGroup]="secondFormGroup" #formone="ngForm">
-        <ng-template matStepLabel>Date de rendu</ng-template>
-        <mat-form-field>
-            <mat-label>Choisissez une date</mat-label>
-            <input matInput formControlName="secondCtrl" [matDatepicker]="picker"  required [(ngModel)]="dateDeRendu" name="dateDeRendu">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Retour</button>
-          <button mat-button matStepperNext>Suivant</button>
-        </div>
-      </form>
+        <form [formGroup]="secondFormGroup" #formone="ngForm">
+            <ng-template matStepLabel>Date de rendu</ng-template>
+            <mat-form-field>
+                <mat-label>Choisissez une date</mat-label>
+                <input matInput formControlName="secondCtrl" [matDatepicker]="picker" formControlName="date" name="date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperPrevious>Retour</button>
+                <button mat-button matStepperNext>Suivant</button>
+            </div>
+        </form>
     </mat-step>
     <mat-step [stepControl]="thirdFormGroup" [editable]="isEditable">
-        <form [formGroup]="thirdFormGroup"  #formone="ngForm">
+        <form [formGroup]="thirdFormGroup" #formone="ngForm">
             <ng-template matStepLabel>Auteur</ng-template>
             <mat-form-field>
-              <mat-label>Nom de l'auteur</mat-label>
-              <input matInput formControlName="thirdCtrl" placeholder="Nom" required required [(ngModel)]="auteur" name="auteur">
+                <mat-label>Nom de l'auteur</mat-label>
+                <input matInput formControlName="thirdCtrl" placeholder="Nom" required formControlName="author" name="author">
             </mat-form-field>
             <div>
                 <button mat-button matStepperPrevious>Retour</button>
                 <button mat-button matStepperNext>Validé</button>
             </div>
-          </form>
+        </form>
     </mat-step>
 
     <mat-step>
-      <ng-template matStepLabel>Fin</ng-template>
-      <p>Assignment prêt.</p>
-      <div>
-        <button mat-button matStepperPrevious>Retour</button>
-        <button mat-button (click)="stepper.reset()">Reinitialiser</button>
-        <button mat-button (click)="onSubmit($event)">Ajouter</button>
-      </div>
+        <ng-template matStepLabel>Fin</ng-template>
+        <p>Assignment prêt.</p>
+        <div>
+            <button mat-button matStepperPrevious>Retour</button>
+            <button mat-button (click)="stepper.reset()">Reinitialiser</button>
+            <button mat-button (click)="onSubmit($event)">Ajouter</button>
+        </div>
     </mat-step>
-  </mat-horizontal-stepper>
-  
+</mat-horizontal-stepper>
