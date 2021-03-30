@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,6 +11,8 @@ import { AuthService } from 'src/app/shared/auth.service';
 })
 export class LoginFormComponent implements OnInit {
 
+  error: boolean = false;
+  errorMessage: String = '';
   form: FormGroup;
 
   constructor(
@@ -25,10 +28,16 @@ export class LoginFormComponent implements OnInit {
     if (this.form.valid) {
       const email = this.form.get('email').value;
       const password = this.form.get('password').value;
-      this.authService.logIn(email, password).subscribe(
-        _ => this.router.navigate(['/home']),
-        _ => this.form.reset()
-      );
+      this.authService.logIn(email, password)
+        .subscribe(data => {
+          this.error = false;
+          this.router.navigate(['/home'])
+          this.form.reset()
+        },err => {
+            this.error = true;
+            this.errorMessage = err.error.message;
+          }
+        );
     }
   }
 

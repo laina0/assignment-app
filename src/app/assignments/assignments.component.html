@@ -1,7 +1,10 @@
+<div class="wrapper">
+    <mat-progress-bar mode="indeterminate" *ngIf="isLoader" value="60" color="accent" class="progressbar"></mat-progress-bar>
+    <mat-toolbar color="primary">
+        <span>Liste des assignments</span>
+    </mat-toolbar>
+</div>
 
-<mat-toolbar color="primary">
-    <span>Liste des assignments</span>
-</mat-toolbar>
 <button mat-raised-button (click)="onPopulate()">
     PopulateDB
 </button>
@@ -32,7 +35,7 @@
                             <p>{{ assignment.remarque }}</p>
                         </mat-card-content>
                         <mat-card-actions fxFlexAlign="end" align="end">
-                            <button (click)="dispatchDialog()" mat-icon-button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above" matTooltip="Modifier" matTooltipHideDelay="10">
+                            <button (click)="onEditAssignement(assignment)" mat-icon-button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above" matTooltip="Modifier" matTooltipHideDelay="10">
                           <mat-icon>mode_edit</mat-icon>
                         </button>
                             <button mat-icon-button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above" matTooltip="Supprimer" matTooltipHideDelay="10">
