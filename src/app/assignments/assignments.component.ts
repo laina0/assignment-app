@@ -149,6 +149,7 @@ export class AssignmentsComponent implements OnInit {
   // tslint:disable-next-line: typedef
   onDrop(event: CdkDragDrop<Assignment[]>) {
     this.currentAssignment = null;
+    this.formNotation.reset();
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
