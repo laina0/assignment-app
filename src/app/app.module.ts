@@ -21,7 +21,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatExpansionModule } from '@angular/material/expansion';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 import { AssignmentsComponent } from './assignments/assignments.component';
@@ -99,7 +100,8 @@ const routes: Routes = [
     DragDropModule,
     MatExpansionModule,
     DialogModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatProgressBarModule
   ],
   providers: [
     {

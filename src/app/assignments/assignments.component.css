@@ -6,6 +6,10 @@ mat-toolbar {
     padding: 16px 0;
 }
 
+.wrapper {
+    position: relative;
+}
+
 .content>mat-card {
     margin-bottom: 16px;
 }
@@ -104,3 +108,13 @@ mat-card::ng-deep.mat-card-header-text {
     padding: 5px 0px 25px 2px;
     width: 100%;
 }
+
+.mat-progress-bar {
+    position: absolute !important;
+    bottom: 0 !important;
+}
+
+
+/* .active {
+    max-height: 4px;
+} */
