@@ -1,9 +1,19 @@
+
 <mat-toolbar color="primary">
     <span>Liste des assignments</span>
 </mat-toolbar>
 <button mat-raised-button (click)="onPopulate()">
     PopulateDB
 </button>
+<main *ngIf="!formVisible" class="container">
+    <button mat-raised-button (click)="onAddAssignmentBtnClick()">
+        Add
+    </button>
+</main>
+
+<app-add-assignment *ngIf="formVisible" (nouvelAssignment)="onNouvelAssignment($event)">
+
+</app-add-assignment>
 
 <div class="content">
     <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px grid">
@@ -19,7 +29,7 @@
                         </mat-card-header>
                         <img mat-card-sm-image [src]="assignment.cours.photoMatiere">
                         <mat-card-content>
-                            <p>Test</p>
+                            <p>{{ assignment.remarque }}</p>
                         </mat-card-content>
                         <mat-card-actions fxFlexAlign="end" align="end">
                             <button (click)="dispatchDialog()" mat-icon-button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above" matTooltip="Modifier" matTooltipHideDelay="10">
@@ -45,7 +55,7 @@
                         </mat-card-header>
                         <img mat-card-sm-image [src]="assignment.cours.photoMatiere">
                         <mat-card-content>
-                            <p>Test</p>
+                            <p></p>
                         </mat-card-content>
                         <mat-card-actions fxFlexAlign="end" align="end">
                             <button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above" matTooltip="Modifier" matTooltipHideDelay="10">
@@ -85,3 +95,4 @@
         </form>
     </div>
 </ng-template>
+

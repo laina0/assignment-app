@@ -45,6 +45,7 @@ export class AssignmentsService {
       id: this.generateId(),
       nom: assignment.nom,
       dateDeRendu: assignment.dateDeRendu,
+      auteur: assignment.auteur,
       rendu: assignment.rendu,
     };
 

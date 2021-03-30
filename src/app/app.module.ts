@@ -17,6 +17,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 
+import {MatStepperModule} from '@angular/material/stepper';
+
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -99,7 +101,8 @@ const routes: Routes = [
     DragDropModule,
     MatExpansionModule,
     DialogModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatStepperModule    
   ],
   providers: [
     {

@@ -8,6 +8,7 @@ import { DialogService } from '../dialog/sevices/dialog.service';
 import { AssignmentsService } from '../shared/assignments.service';
 import { Assignment } from './assignment.model';
 
+
 @Component({
   selector: 'app-assignments',
   templateUrl: './assignments.component.html',
@@ -24,6 +25,8 @@ export class AssignmentsComponent implements OnInit {
   prevPage: number;
   hasNextPage: boolean;
   nextPage: number;
+
+  formVisible=false;
 
   dialog: DialogService;
   @ViewChild('notationDialogTemplate')
@@ -188,4 +191,20 @@ export class AssignmentsComponent implements OnInit {
       remarque: [null]
     });
   }
+
+  onAddAssignmentBtnClick() {
+    this.formVisible=true;
+  }
+
+  onNouvelAssignment(event) {
+    // l'event est l'assignment ajouté par le composant
+    // fils qui a émis l'événement
+
+    this.assignments.push(event);
+
+    // on cache le formulaire, et on re-affiche la liste
+    this.formVisible=false;
+  }
+
+
 }

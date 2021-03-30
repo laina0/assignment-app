@@ -11,4 +11,5 @@ export class Assignment {
   note?: number;
   remarque?: string;
   cours: Cours;
+  nouvelAssignment: () => any;
 }
