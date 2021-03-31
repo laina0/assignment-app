@@ -13,8 +13,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./add-assignment.component.css'],
 })
 export class AddAssignmentComponent implements OnInit {
+
   cours: Cours[] = [];
-  
   // Pour les steppers
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -28,34 +28,26 @@ export class AddAssignmentComponent implements OnInit {
               private router: Router,
               private formBuilder: FormBuilder) {}
 
-  ngOnInit(){
-    this.firstFormGroup = this.formBuilder.group({
-      name: ['', Validators.required]
-    });
-    this.secondFormGroup = this.formBuilder.group({
-      date: ['', Validators.required]
-    });
-    this.thirdFormGroup = this.formBuilder.group({
-      author: ['', Validators.required]
-    });
-    this.fourthFormGroup = this.formBuilder.group({
-      cours: ['', Validators.required]
-    });
 
+  // tslint:disable-next-line: typedef
+  ngOnInit(){
+    this.initForm();
     this.getCours();
   }
 
   getCours(){
     this.coursService.getCours()
-    .subscribe(data =>{
-        this.cours =  data;
-        console.log(this.cours);
-    });      
+    .subscribe(data => {
+        this.cours =  data.docs;
+    });
   }
 
   onSubmit(event) {
 
-    if (this.firstFormGroup.valid && this.secondFormGroup.valid && this.thirdFormGroup.valid) {
+    if (this.firstFormGroup.valid
+      && this.secondFormGroup.valid
+      && this.thirdFormGroup.valid
+      && this.fourthFormGroup.valid) {
       const assignment = new Assignment();
       assignment.nom = this.firstFormGroup.get('name').value;
       assignment.dateDeRendu = this.secondFormGroup.get('date').value;
@@ -70,5 +62,20 @@ export class AddAssignmentComponent implements OnInit {
           // et on navigue vers la page d'accueil qui affiche la liste
         });*/
     }
+  }
+
+  private initForm() {
+    this.firstFormGroup = this.formBuilder.group({
+      name: ['', Validators.required]
+    });
+    this.secondFormGroup = this.formBuilder.group({
+      date: ['', Validators.required]
+    });
+    this.thirdFormGroup = this.formBuilder.group({
+      author: ['', Validators.required]
+    });
+    this.fourthFormGroup = this.formBuilder.group({
+      cours: ['', Validators.required]
+    });
   }
 }
