@@ -87,6 +87,8 @@ export class AssignmentsComponent implements OnInit {
       this.hasNextPage = data.hasNextPage;
       this.nextPage = data.nextPage;
       this.isLoader = false;
+
+      console.log(this.assignments);
     });
   }
 

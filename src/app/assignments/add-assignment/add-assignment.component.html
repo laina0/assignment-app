@@ -2,7 +2,7 @@
     <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
         <form [formGroup]="firstFormGroup" #formone="ngForm">
             <ng-template matStepLabel>Nom de l'assignment</ng-template>
-            <mat-form-field>
+            <mat-form-field>                
                 <mat-label>Nom</mat-label>
                 <input matInput formControlName="firstCtrl" placeholder="Nom assignment" formControlName="name" name="name">
             </mat-form-field>
@@ -33,6 +33,23 @@
                 <mat-label>Nom de l'auteur</mat-label>
                 <input matInput formControlName="thirdCtrl" placeholder="Nom" required formControlName="author" name="author">
             </mat-form-field>
+            <div>
+                <button mat-button matStepperPrevious>Retour</button>
+                <button mat-button matStepperNext>Validé</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="fourthFormGroup" [editable]="isEditable">
+        <form [formGroup]="fourthFormGroup" #formone="ngForm">
+            <ng-template matStepLabel>Cours</ng-template>
+            <mat-form-field appearance="fill">
+                <mat-label>Cours</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let cour of cours" [value]="cour._id">
+                      {{ cour.nom }}
+                    </mat-option>
+                  </mat-select>
+              </mat-form-field>
             <div>
                 <button mat-button matStepperPrevious>Retour</button>
                 <button mat-button matStepperNext>Validé</button>

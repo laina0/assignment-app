@@ -17,7 +17,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 
-import {MatStepperModule} from '@angular/material/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatSelectModule } from '@angular/material/select'
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -104,7 +105,8 @@ const routes: Routes = [
     DialogModule,
     MatTooltipModule,
     MatStepperModule,    
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSelectModule 
   ],
   providers: [
     {
