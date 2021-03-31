@@ -55,7 +55,7 @@ export class AddAssignmentComponent implements OnInit {
       assignment.cours = this.fourthFormGroup.get('cours').value;
       assignment.rendu = false;
       console.log(assignment);
-      /*this.assignmentsService.addAssignment(nouvelAssignment)
+      /*this.assignmentsService.addAssignment(assignment)
         .subscribe(message => {
           console.log(message);
           console.log('finish');

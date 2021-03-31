@@ -42,14 +42,14 @@
     <mat-step [stepControl]="fourthFormGroup" [editable]="isEditable">
         <form [formGroup]="fourthFormGroup" #formone="ngForm">
             <ng-template matStepLabel>Cours</ng-template>
-            <mat-form-field appearance="fill">
+            <mat-form-field>
                 <mat-label>Cours</mat-label>
-                <mat-select>
-                    <mat-option *ngFor="let cour of cours" name="cours" [value]="cour._id">
+                <mat-select formControlName="cours" name="cours">
+                    <mat-option matInput *ngFor="let cour of cours" [value]="cour._id" required>
                         {{ cour.nom }}
-                    </mat-option>
+                    </mat-option>                   
                 </mat-select>
-            </mat-form-field>
+            </mat-form-field>            
             <div>
                 <button mat-button matStepperPrevious>Retour</button>
                 <button mat-button matStepperNext>Suivant</button>
