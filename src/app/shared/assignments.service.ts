@@ -41,20 +41,13 @@ export class AssignmentsService {
   addAssignment(assignment: Assignment): Observable<string> {
 
     const url = `${environment.url}/assignments`;
-    const data = {
-      id: this.generateId(),
-      nom: assignment.nom,
-      dateDeRendu: assignment.dateDeRendu,
-      auteur: assignment.auteur,
-      rendu: assignment.rendu,
-    };
+    assignment.id = this.generateId();
 
-    return this.http.post<string>(url, data, {}).pipe(
+    return this.http.post<string>(url, assignment, {}).pipe(
       // tslint:disable-next-line: no-shadowed-variable
-      switchMap(() => {
-        return of('Success add data');
+      switchMap((message: string) => {
+        return of(message);
       }),
-      tap( _ => { console.log('debug'); }),
       catchError(error => of(error))
     );
   }

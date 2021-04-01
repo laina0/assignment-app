@@ -48,17 +48,17 @@ export class AddAssignmentComponent implements OnInit {
       && this.secondFormGroup.valid
       && this.thirdFormGroup.valid
       && this.fourthFormGroup.valid) {
+
       const assignment = new Assignment();
       assignment.nom = this.firstFormGroup.get('name').value;
       assignment.dateDeRendu = this.secondFormGroup.get('date').value;
       assignment.auteur = this.thirdFormGroup.get('author').value;
       assignment.cours = this.fourthFormGroup.get('cours').value;
       assignment.rendu = false;
-      console.log(assignment);
+
       this.assignmentsService.addAssignment(assignment)
         .subscribe(message => {
-          console.log(message);
-             // et on navigue vers la page d'accueil qui affiche la liste
+            this.router.navigate(['/home']);
         });
     }
   }
