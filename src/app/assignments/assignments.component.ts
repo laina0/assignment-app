@@ -9,12 +9,14 @@ import { AssignmentsService } from '../shared/assignments.service';
 import { Assignment } from './assignment.model';
 
 
+
 @Component({
   selector: 'app-assignments',
   templateUrl: './assignments.component.html',
   styleUrls: ['./assignments.component.css'],
 })
 export class AssignmentsComponent implements OnInit {
+  options: FormGroup;
   assignments: Assignment[] = [];
   assignmentsRendus: Assignment[] = [];
   page = 1;
@@ -53,7 +55,14 @@ export class AssignmentsComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private dialogFactoryService: DialogFactoryService,
-              private formBuilder: FormBuilder) {}
+              private formBuilder: FormBuilder) 
+              {
+                this.options = formBuilder.group({
+                  bottom: 0,
+                  fixed: false,
+                  top: 0
+                });
+              }
 
   // tslint:disable-next-line: typedef
   ngOnInit() {

@@ -18,7 +18,9 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 import { MatStepperModule } from '@angular/material/stepper';
-import { MatSelectModule } from '@angular/material/select'
+import { MatSelectModule } from '@angular/material/select';
+
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -86,6 +88,7 @@ const routes: Routes = [
     EditAssigmentComponent,
     LoginFormComponent
   ],
+  exports: [MatSidenavModule],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -106,7 +109,8 @@ const routes: Routes = [
     MatTooltipModule,
     MatStepperModule,    
     MatProgressBarModule,
-    MatSelectModule 
+    MatSelectModule,
+    MatSidenavModule 
   ],
   providers: [
     {
