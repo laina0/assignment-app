@@ -50,6 +50,10 @@
                 <button mat-raised-button (click)="onAddAssignmentBtnClick()">
                     Add
                 </button>
+                <button mat-raised-button (click)="onPopulate()">
+                    Populate
+                </button>
+
             </main>
 
             <app-add-assignment *ngIf="formVisible" (nouvelAssignment)="onNouvelAssignment($event)">

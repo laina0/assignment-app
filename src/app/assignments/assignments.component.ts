@@ -85,8 +85,8 @@ export class AssignmentsComponent implements OnInit {
     this.isLoader = true;
     this.assignmentsService.getAssignmentsPagine(this.page, this.limit)
     .subscribe(data => {
-      this.assignments = data.docs.filter(obj => obj.note === null && obj.rendu === false);
-      this.assignmentsRendus = data.docs.filter(objRendu => objRendu.rendu === true && (objRendu.note !== null && objRendu.note !== 0));
+      this.assignments = data.docs.filter(obj => obj.rendu === false);
+      this.assignmentsRendus = data.docs.filter(obj => obj.rendu === true);
       this.page = data.page;
       this.limit = data.limit;
       this.totalDocs = data.totalDocs;
