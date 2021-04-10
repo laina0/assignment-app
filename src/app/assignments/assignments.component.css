@@ -54,15 +54,20 @@ mat-card img {
     justify-content: space-between;
     box-sizing: border-box;
     cursor: move;
+    
 }
 
 .assignment-block:last-child {
     border: none;
+    border-top: 6px solid green;  
 }
 
-.example-card {
+.example-card{
     max-width: 400px;
-  }
+    border-radius: 11px;
+    border-top: 6px solid red;  
+
+}
   
   .example-header-image {
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');

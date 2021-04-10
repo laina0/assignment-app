@@ -10,6 +10,7 @@ import { AssignmentsComponent } from '../assignments.component';
 
 
 
+
 @Component({
   selector: 'app-add-assignment',
   templateUrl: './add-assignment.component.html',
@@ -25,9 +26,6 @@ export class AddAssignmentComponent implements OnInit {
   fourthFormGroup: FormGroup;
 
   isEditable = true;
-
-  //Durée de visibilité du snackBar
-  durationInSeconds = 5;
 
   constructor(private assignmentsService: AssignmentsService,
               private coursService: CoursService,
@@ -68,6 +66,7 @@ export class AddAssignmentComponent implements OnInit {
         .subscribe(message => {
             this.router.navigate(['/home']);
         });
+
     }
   }
 
@@ -86,7 +85,7 @@ export class AddAssignmentComponent implements OnInit {
     });
   }
 
-  showSnackbarCssStyles(content, action, duration) {
+  showSnackbar(content, action, duration) {
     let sb = this._snackBar.open(content, action, {
       duration: duration,
       panelClass: ["custom-style"]
