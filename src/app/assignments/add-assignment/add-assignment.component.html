@@ -63,7 +63,7 @@
         <div>
             <button mat-button matStepperPrevious>Retour</button>
             <button mat-button (click)="stepper.reset()">Reinitialiser</button>
-            <button mat-button (click)="onSubmit($event)">Ajouter</button>
+            <button mat-button (click)="onSubmit($event)" (click)="showSnackbarCssStyles('Assignment ajouté','Close','4000')" >Ajouter</button>
         </div>
     </mat-step>
 </mat-horizontal-stepper>

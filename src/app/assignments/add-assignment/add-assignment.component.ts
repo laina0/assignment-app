@@ -5,6 +5,9 @@ import { CoursService } from 'src/app/shared/cours.service';
 import { Assignment } from '../assignment.model';
 import { Cours } from '../cours.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AssignmentsComponent } from '../assignments.component';
+
 
 
 @Component({
@@ -23,10 +26,15 @@ export class AddAssignmentComponent implements OnInit {
 
   isEditable = true;
 
+  //Durée de visibilité du snackBar
+  durationInSeconds = 5;
+
   constructor(private assignmentsService: AssignmentsService,
               private coursService: CoursService,
               private router: Router,
-              private formBuilder: FormBuilder) {}
+              private formBuilder: FormBuilder,
+              private _snackBar: MatSnackBar
+              ) {}
 
 
   // tslint:disable-next-line: typedef
@@ -77,4 +85,19 @@ export class AddAssignmentComponent implements OnInit {
       cours: ['', Validators.required]
     });
   }
+
+  showSnackbarCssStyles(content, action, duration) {
+    let sb = this._snackBar.open(content, action, {
+      duration: duration,
+      panelClass: ["custom-style"]
+    });
+    sb.onAction().subscribe(() => {
+      sb.dismiss();
+    });
+  }
+
+
 }
+
+
+

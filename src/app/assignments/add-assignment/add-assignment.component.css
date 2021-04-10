@@ -13,3 +13,8 @@
 .mat-form-field {
   margin-top: 16px;
 }
+
+::ng-deep .custom-style{
+  background-color:green;
+  color:white;
+}
