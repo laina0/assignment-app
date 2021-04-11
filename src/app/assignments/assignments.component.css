@@ -98,6 +98,7 @@ mat-card::ng-deep.mat-card-header-text {
 
 .assignment-content:last-child {
     margin-left: 10px;
+    background-color: rgba(236, 229, 229, 0.849);
 }
 
 .cdk-drag-preview {
@@ -212,11 +213,20 @@ mat-card::ng-deep.mat-card-header-text {
  
   .assignmentViewportList {
     height: 750px;
-    width: 50%;
-    border: 1px solid black;
+    width: auto;
   }  
   
   ::ng-deep .card-content-left{
+    flex-flow: row wrap;
+    box-sizing: border-box;
+    display: flex;
+    place-content: center flex-start;
+    align-items: center;
+    margin: 30px 4px 13px 15px;
+    gap: 3px;
+  }
+
+  ::ng-deep .card-content-right{
     flex-flow: row wrap;
     box-sizing: border-box;
     display: flex;
@@ -228,8 +238,16 @@ mat-card::ng-deep.mat-card-header-text {
  
   }
 
-  .card-title{
+  .card-title-non-rendu{
     color: red;
     margin-left: 350px;
     margin-top: 15px;
+    font-weight: bold;
+  }
+
+  .card-title-rendu{
+    color: green;
+    margin-left: 350px;
+    margin-top: 15px;
+    font-weight: bold;
   }
