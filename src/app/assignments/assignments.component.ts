@@ -1,14 +1,14 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { Component, Input, NgZone, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { filter, map, pairwise, throttleTime } from 'rxjs/operators';
 import { DialogData } from '../dialog/models/dialog-data.model';
 import { DialogFactoryService } from '../dialog/sevices/dialog-factory.service';
 import { DialogService } from '../dialog/sevices/dialog.service';
 import { AssignmentsService } from '../shared/assignments.service';
 import { Assignment } from './assignment.model';
-
-
 
 @Component({
   selector: 'app-assignments',
@@ -37,6 +37,8 @@ export class AssignmentsComponent implements OnInit {
   // https://material.angular.io/components/progress-bar/api
   @Input() value: number;
 
+  @ViewChild("scroller") scroller: CdkVirtualScrollViewport;
+
   // Nous avons pris la partie du code du boite de dialogue sur l'url suivant:
   // https://www.codegram.com/blog/playing-with-dialogs-and-ng-templates/
   dialog: DialogService;
@@ -55,7 +57,8 @@ export class AssignmentsComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private dialogFactoryService: DialogFactoryService,
-              private formBuilder: FormBuilder) 
+              private formBuilder: FormBuilder,
+              private ngZone: NgZone) 
               {
                 this.options = formBuilder.group({
                   bottom: 0,
@@ -97,6 +100,50 @@ export class AssignmentsComponent implements OnInit {
       this.nextPage = data.nextPage;
       this.isLoader = false;
     });
+  }
+
+  getAssignmentForScrolling() {
+    this.assignmentsService.getAssignmentsPagine(this.page, this.limit)
+    .subscribe(data => {
+      this.assignments = this.assignments.concat(data.docs.filter(obj => obj.rendu === false));
+      this.assignmentsRendus = this.assignmentsRendus.concat(data.docs.filter(obj => obj.rendu === true));
+      this.page = data.page;
+      this.limit = data.limit;
+      this.totalDocs = data.totalDocs;
+      this.totalPages = data.totalPages;
+      this.hasPrevPage = data.hasPrevPage;
+      this.prevPage = data.prevPage;
+      this.hasNextPage = data.hasNextPage;
+      this.nextPage = data.nextPage;
+      this.isLoader = false;
+    });
+  }
+
+  ngAfterViewInit() {
+    // Appelé automatiquement après l'affichage, donc l'élément scroller aura
+    // et affiché et ne vaudra pas "undefined" (ce qui aurait été le cas dans ngOnInit)
+
+    // On va s'abonner aux évenements de scroll sur le scrolling...
+    this.scroller
+      .elementScrolled()
+      .pipe(
+        map((event) => {
+          return this.scroller.measureScrollOffset("bottom");
+        }),
+        pairwise(),
+        filter(([y1, y2]) => y2 < y1 && y2 < 200),
+        throttleTime(200) // on ne va en fait envoyer le dernier événement que toutes les 200ms.
+        // on va ignorer tous les évéments arrivés et ne garder que le dernier toutes
+        // les 200ms
+      )
+      .subscribe((dist) => {
+        this.ngZone.run(() => {
+          if (this.hasNextPage) {
+            this.page = this.nextPage;
+            this.getAssignmentForScrolling();
+          }
+        });
+      });
   }
 
   onDeleteAssignment(event) {

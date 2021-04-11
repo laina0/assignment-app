@@ -203,3 +203,8 @@ mat-card::ng-deep.mat-card-header-text {
     width: 2.1rem;
   }
  
+  .assignmentViewportList {
+    height: 750px;
+    width: 50%;
+    border: 1px solid black;
+  }

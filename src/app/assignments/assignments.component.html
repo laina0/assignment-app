@@ -43,35 +43,39 @@
 <!-- Début Assignments -->
 <div class="content">
     <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px grid">
-        <div fxFlex="auto" class="assignment-content">
-            <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="15px grid" cdkDropList
-                #assignmentList="cdkDropList" [cdkDropListData]="assignments"
-                [cdkDropListConnectedTo]="[doneAssignmentList]" class="assignment-list">
-                <div cdkDrag fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let assignment of assignments" >
-                    <mat-card class="example-card">
-                        <mat-card-header>
-                          <div mat-card-avatar class="example-header-image" 
-                          [ngStyle]="{'background-image': 'url(' + assignment.cours.photoProf + ')'}">
-                           </div>
-                          <mat-card-title>{{ assignment.nom }}</mat-card-title>
-                          <mat-card-subtitle>{{ assignment.auteur }}</mat-card-subtitle>
-                          <mat-card-subtitle>{{ assignment.dateDeRendu | date }}</mat-card-subtitle>
-                        </mat-card-header>
-                        <img mat-card-image [src]="assignment.cours.photoMatiere">
-                        <mat-card-actions>
-                            <button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above"
-                            matTooltip="Modifier" matTooltipHideDelay="10">
-                            <mat-icon>mode_edit</mat-icon>
-                            </button>   
-                            <button mat-icon-button>
-                                <mat-icon mat-icon-button #tooltip="matTooltip" matTooltipPosition="above"
-                                    matTooltip="Supprimer" matTooltipHideDelay="10">delete</mat-icon>
-                            </button>
-                        </mat-card-actions>
-                      </mat-card>
+        <cdk-virtual-scroll-viewport #scroller itemSize="50" class="assignmentViewportList">
+            <div fxFlex="auto" class="assignment-content">
+                <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="15px grid" cdkDropList
+                    #assignmentList="cdkDropList" [cdkDropListData]="assignments"
+                    [cdkDropListConnectedTo]="[doneAssignmentList]" class="assignment-list">
+                    <div cdkDrag fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" *cdkVirtualFor="let assignment of assignments" >
+                        <mat-card class="example-card">
+                            <mat-card-header>
+                            <div mat-card-avatar class="example-header-image" 
+                            [ngStyle]="{'background-image': 'url(' + assignment.cours.photoProf + ')'}">
+                            </div>
+                            <mat-card-title>{{ assignment.nom }}</mat-card-title>
+                            <mat-card-subtitle>{{ assignment.auteur }}</mat-card-subtitle>
+                            <mat-card-subtitle>{{ assignment.dateDeRendu | date }}</mat-card-subtitle>
+                            </mat-card-header>
+                            <img mat-card-image [src]="assignment.cours.photoMatiere">
+                            <mat-card-actions>
+                                <button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above"
+                                matTooltip="Modifier" matTooltipHideDelay="10">
+                                <mat-icon>mode_edit</mat-icon>
+                                </button>   
+                                <button mat-icon-button>
+                                    <mat-icon mat-icon-button #tooltip="matTooltip" matTooltipPosition="above"
+                                        matTooltip="Supprimer" matTooltipHideDelay="10">delete</mat-icon>
+                                </button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
                 </div>
             </div>
-        </div>
+        </cdk-virtual-scroll-viewport>
+
+        
         <div fxFlex="auto" class="assignment-content content-left" cdkDropList #doneAssignmentList="cdkDropList"
             [cdkDropListData]="assignmentsRendus" [cdkDropListConnectedTo]="[assignmentList]"
             (cdkDropListDropped)="onDrop($event)">
