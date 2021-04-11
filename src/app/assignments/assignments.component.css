@@ -213,8 +213,7 @@ mat-card::ng-deep.mat-card-header-text {
  
   .assignmentViewportList {
     height: 750px;
-    width: auto;
-  }  
+  }
   
   ::ng-deep .card-content-left{
     flex-flow: row wrap;
