@@ -221,7 +221,7 @@ mat-card::ng-deep.mat-card-header-text {
     display: flex;
     place-content: center flex-start;
     align-items: center;
-    margin: 0 0 13px 15px;
+    margin: 0 -70px 13px 15px;
     gap: 3px;
   }
 

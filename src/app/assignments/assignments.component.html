@@ -62,7 +62,7 @@
                             <img mat-card-image [src]="assignment.cours.photoMatiere">
                             <mat-card-actions>
                                 <button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above"
-                                matTooltip="Modifier" matTooltipHideDelay="10">
+                                (click)="onEditAssignement(assignment)" matTooltip="Modifier" matTooltipHideDelay="10">
                                 <mat-icon>mode_edit</mat-icon>
                                 </button>   
                                 <button mat-icon-button>
@@ -101,12 +101,8 @@
                         </mat-card-content>
                         <mat-card-actions fxFlexAlign="end" align="end">
                             <button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above"
-                                matTooltip="Modifier" matTooltipHideDelay="10">
+                                b matTooltip="Modifier" matTooltipHideDelay="10">
                                 <mat-icon>mode_edit</mat-icon>
-                            </button>
-                            <button mat-icon-button>
-                                <mat-icon mat-icon-button #tooltip="matTooltip" matTooltipPosition="above"
-                                    matTooltip="Supprimer" matTooltipHideDelay="10">delete</mat-icon>
                             </button>
                         </mat-card-actions>
                     </mat-card>
