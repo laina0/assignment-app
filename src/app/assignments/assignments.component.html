@@ -82,7 +82,7 @@
         
 
         
-        <div fxFlex="auto" class="assignment-content content-left" cdkDropList #doneAssignmentList="cdkDropList"
+            <div fxFlex="auto" class="assignment-content content-left" cdkDropList #doneAssignmentList="cdkDropList"
             [cdkDropListData]="assignmentsRendus" [cdkDropListConnectedTo]="[assignmentList]"
             (cdkDropListDropped)="onDrop($event)">
             <h4 class="card-title-rendu" >
@@ -152,3 +152,4 @@
         </form>
     </div>
     <!-- Fin Assignments -->
+</ng-template>
