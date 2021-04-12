@@ -88,8 +88,8 @@ export class AssignmentsComponent implements OnInit {
     this.isLoader = true;
     this.assignmentsService.getAssignmentsPagine(this.page, this.limit)
     .subscribe(data => {
-      this.assignments = data.docs.filter(obj => obj.rendu === false);
-      this.assignmentsRendus = data.docs.filter(obj => obj.rendu === true);
+      this.assignments = this.assignments.concat(data.docs.filter(obj => obj.rendu === false));
+      this.assignmentsRendus = this.assignmentsRendus.concat(data.docs.filter(obj => obj.rendu === true));
       this.page = data.page;
       this.limit = data.limit;
       this.totalDocs = data.totalDocs;
@@ -269,7 +269,7 @@ export class AssignmentsComponent implements OnInit {
   }
 
   onAddAssignmentBtnClick() {
-    this.formVisible=true;
+    this.formVisible = !this.formVisible;
   }
 
   onNouvelAssignment(event) {
