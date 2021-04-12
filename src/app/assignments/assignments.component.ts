@@ -289,6 +289,4 @@ export class AssignmentsComponent implements OnInit {
     // on cache le formulaire, et on re-affiche la liste
     this.formVisible=false;
   }
-
-
 }
