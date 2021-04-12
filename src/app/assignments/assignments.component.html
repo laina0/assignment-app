@@ -99,8 +99,15 @@
                             <mat-card-subtitle>{{ assignment.dateDeRendu | date }}</mat-card-subtitle>
                         </mat-card-header>
                         <img mat-card-sm-image [src]="assignment.cours.photoMatiere">
-                        <mat-card-content>
-                            <p></p>
+                        <mat-card-content>                        
+                            <mat-expansion-panel class="mat-elevation-z0" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Voir remarque
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <p>{{ assignment.remarque }}</p>
+                            </mat-expansion-panel>                        
                         </mat-card-content>
                         <mat-card-actions fxFlexAlign="end" align="end">
                             <button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above"
