@@ -66,7 +66,6 @@ export class AddAssignmentComponent implements OnInit {
         .subscribe(message => {
             this.router.navigate(['/home']);
         });
-
     }
   }
 

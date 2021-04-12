@@ -74,7 +74,7 @@
                         </mat-card>
                     </div>
                 </div>
-                <section class="progress_spinner">
+                <section *ngIf="isLoadignSpinner" class="progress_spinner">
                     <mat-spinner class="example-margin" color="color" mode="indeterminate" diameter="40">
                     </mat-spinner>
                 </section>
@@ -122,7 +122,7 @@
                     </div>
                 </div>
             </cdk-virtual-scroll-viewport>
-            <section class="progress_spinner">
+            <section *ngIf="isLoadignSpinner" class="progress_spinner">
                 <mat-spinner class="example-margin" color="color" mode="indeterminate" diameter="40">
                 </mat-spinner>
             </section>

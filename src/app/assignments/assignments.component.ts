@@ -29,7 +29,7 @@ export class AssignmentsComponent implements OnInit {
   hasNextPage: boolean;
   nextPage: number;
   isLoader: boolean;
-
+  isLoadignSpinner: boolean;
 
   formVisible = false;
 
@@ -75,6 +75,7 @@ export class AssignmentsComponent implements OnInit {
     // on initialise le formulaire pour la notation
     this.formNotation = this.initNotationForm();
     this.isLoader = false;
+    this.isLoadignSpinner = false;
 
     // on utilise le service pour récupérer les
     // assignments à afficher
@@ -110,6 +111,7 @@ export class AssignmentsComponent implements OnInit {
   }
 
   getAssignmentForScrolling() {
+    this.isLoadignSpinner = true;
     this.assignmentsService.getAssignmentsPagine(this.page, this.limit, false)
     .subscribe(data => {
       this.assignments = this.assignments.concat(data.docs);
@@ -121,7 +123,7 @@ export class AssignmentsComponent implements OnInit {
       this.prevPage = data.prevPage;
       this.hasNextPage = data.hasNextPage;
       this.nextPage = data.nextPage;
-      this.isLoader = false;
+      this.isLoadignSpinner = false;
     });
   }
 
