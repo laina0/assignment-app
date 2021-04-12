@@ -52,12 +52,13 @@
                     <div cdkDrag fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="33%" *cdkVirtualFor="let assignment of assignments">
                         <mat-card class="example-card">
                             <mat-card-header>
-                            <div mat-card-avatar class="example-header-image"
-                            [ngStyle]="{'background-image': 'url(assets/img/' + assignment.cours.photoProf + ')'}">
-                            </div>
-                            <mat-card-title>{{ assignment.nom }}</mat-card-title>
-                            <mat-card-subtitle>{{ assignment.auteur }}</mat-card-subtitle>
-                            <mat-card-subtitle>{{ assignment.dateDeRendu | date }}</mat-card-subtitle>
+                                <div class="image">
+                                    <img src="http://localhost:4200/assets/img/{{ assignment.cours.photoProf }}" class="img-circle elevation-2"
+                                        alt="User Image">
+                                </div>
+                                <mat-card-title>{{ assignment.nom }}</mat-card-title>
+                                <mat-card-subtitle>{{ assignment.auteur }}</mat-card-subtitle>
+                                <mat-card-subtitle>{{ assignment.dateDeRendu | date }}</mat-card-subtitle>
                             </mat-card-header>
                             <img mat-card-image [src]="'assets/img/'+assignment.cours.photoMatiere">
                             <mat-card-actions>
@@ -80,20 +81,20 @@
             </cdk-virtual-scroll-viewport>
             </div>
         
-
-        
         <div fxFlex="auto" class="assignment-content content-left" cdkDropList #doneAssignmentList="cdkDropList"
             [cdkDropListData]="assignmentsRendus" [cdkDropListConnectedTo]="[assignmentList]"
             (cdkDropListDropped)="onDrop($event)">
             <h4 class="card-title-rendu" >
                 Rendu
             </h4>
+
             <div fxLayout="row wrap" fxLayoutAlign="start center" class="assignment-list card-content-right">
                 <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" cdkDrag *ngFor="let assignment of assignmentsRendus">
                     <mat-card class="mat-elevation-z5" class="assignment-block">
                         <mat-card-header>
-                            <div mat-card-avatar
-                                [ngStyle]="{'background-image': 'url(assets/img/' + assignment.cours.photoProf + ')'}">
+                            <div class="image">
+                                <img src="http://localhost:4200/assets/img/{{ assignment.cours.photoProf }}" class="img-circle elevation-2"
+                                    alt="User Image">
                             </div>
                             <mat-card-title>{{ assignment.nom }}</mat-card-title>
                             <mat-card-subtitle>{{ assignment.auteur }}</mat-card-subtitle>
@@ -117,10 +118,14 @@
                                 <mat-icon>mode_edit</mat-icon>
                             </button>
                         </mat-card-actions>
-                    </mat-card>
+                    </mat-card>                    
                 </div>
             </div>
-        </div>
+            <section class="progress_spinner">
+                <mat-spinner class="example-margin" color="color" mode="indeterminate" diameter="40">
+                </mat-spinner>
+            </section>
+        </div>        
     </div>
 </div>
 <ng-template #notationDialogTemplate>
@@ -139,7 +144,7 @@
 
             <div class="form-element">
                 <button mat-raised-button type="submit" mat-flat-button [color]="primary"
-                    [disabled]="!formNotation.valid">
+                    [disabled]="!formNotation.valid" (click)="showSnackbar('Assignment Modifié :)','X','3000')">
                     Modifier
                 </button>
                 <button mat-raised-button [color]="color" [disabled]="disabled" (click)="closeDialog()">

@@ -9,6 +9,7 @@ import { DialogFactoryService } from '../dialog/sevices/dialog-factory.service';
 import { DialogService } from '../dialog/sevices/dialog.service';
 import { AssignmentsService } from '../shared/assignments.service';
 import { Assignment } from './assignment.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-assignments',
@@ -58,7 +59,8 @@ export class AssignmentsComponent implements OnInit {
               private route: ActivatedRoute,
               private dialogFactoryService: DialogFactoryService,
               private formBuilder: FormBuilder,
-              private ngZone: NgZone) 
+              private ngZone: NgZone,
+              private _snackBar: MatSnackBar) 
               {
                 this.options = formBuilder.group({
                   bottom: 0,
@@ -290,6 +292,16 @@ export class AssignmentsComponent implements OnInit {
 
     // on cache le formulaire, et on re-affiche la liste
     this.formVisible=false;
+  }
+
+  showSnackbar(content, action, duration) {
+    let sb = this._snackBar.open(content, action, {
+      duration: duration,
+      panelClass: ["custom-style"]
+    });
+    sb.onAction().subscribe(() => {
+      sb.dismiss();
+    });
   }
 
 

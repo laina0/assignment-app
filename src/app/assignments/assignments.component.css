@@ -255,3 +255,8 @@ mat-card::ng-deep.mat-card-header-text {
    margin-right: 162px;
    
  }
+
+ ::ng-deep .custom-style{
+  background-color:white;
+  color:black;
+}
