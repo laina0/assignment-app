@@ -1,69 +1,134 @@
-<div class="wrapper">
-    <mat-progress-bar mode="indeterminate" *ngIf="isLoader" value="60" color="accent" class="progressbar"></mat-progress-bar>
-    <mat-toolbar color="primary">
-        <span>Liste des assignments</span>
+<!-- Début Toolbar -->
+<p>
+    <mat-toolbar class="example-header">
+        <span class="example-spacer"></span>
+        <span class="example-spacer"></span>
+        <div class="user-panel d-flex">
+            <div class="image">
+                <img src="assets/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block"></a>
+            </div>
+        </div>
+        <mat-progress-bar mode="indeterminate" *ngIf="isLoader" value="60" class="progressbar">
+        </mat-progress-bar>
     </mat-toolbar>
-</div>
-<button mat-raised-button (click)="onPopulate()">
-    PopulateDB
-</button>
+</p>
 
+<p>
+    <mat-toolbar class="header-nav">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span>Liste des assignments </span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above" matTooltip="Peupler DB" matTooltipHideDelay="10" class="example-icon favorite-icon" aria-label="populate DB" (click)="onPopulate()">
+            <mat-icon>pregnant_woman</mat-icon>
+        </button>
+        <button mat-icon-button class="add-icon" aria-label="add buttom icon" (click)="onAddAssignmentBtnClick()"
+        #tooltip="matTooltip" matTooltipPosition="above" matTooltip="Ajouter" matTooltipHideDelay="10">
+            <mat-icon>assignment</mat-icon>
+        </button>
+    </mat-toolbar>
+</p>
+<!-- Fin Toolbar -->
+<!-- Début Stepper -->
+<app-add-assignment *ngIf="formVisible" (nouvelAssignment)="onNouvelAssignment($event)">
+
+</app-add-assignment>
+<!-- Fin Stepper -->
+<!-- Début Assignments -->
 <div class="content">
     <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px grid">
-        <div fxFlex="auto" class="assignment-content">
-            <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="15px grid" cdkDropList #assignmentList="cdkDropList" [cdkDropListData]="assignments" [cdkDropListConnectedTo]="[doneAssignmentList]" class="assignment-list">
-                <div cdkDrag fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let assignment of assignments">
-                    <mat-card class="mat-elevation-z5" class="assignment-block">
-                        <mat-card-header>
-                            <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + assignment.cours.photoProf + ')'}"></div>
-                            <mat-card-title>{{ assignment.nom }}</mat-card-title>
-                            <mat-card-subtitle>{{ assignment.auteur }}</mat-card-subtitle>
-                            <mat-card-subtitle>{{ assignment.dateDeRendu | date }}</mat-card-subtitle>
-                        </mat-card-header>
-                        <img mat-card-sm-image [src]="assignment.cours.photoMatiere">
-                        <mat-card-content>
-                            <p>Test</p>
-                        </mat-card-content>
-                        <mat-card-actions fxFlexAlign="end" align="end">
-                            <button (click)="onEditAssignement(assignment)" mat-icon-button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above" matTooltip="Modifier" matTooltipHideDelay="10">
-                          <mat-icon>mode_edit</mat-icon>
-                        </button>
-                            <button mat-icon-button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above" matTooltip="Supprimer" matTooltipHideDelay="10">
-                          <mat-icon>delete</mat-icon>
-                        </button>
-                        </mat-card-actions>
-                    </mat-card>
+            <div fxFlex="auto" class="assignment-content card" >
+                <h4 class="card-title-non-rendu">
+                    Non rendu
+                </h4>
+                <cdk-virtual-scroll-viewport #scroller itemSize="50" class="assignmentViewportList">
+                <div fxLayout="row wrap" fxLayoutAlign="start center" cdkDropList
+                    #assignmentList="cdkDropList" [cdkDropListData]="assignments"
+                    [cdkDropListConnectedTo]="[doneAssignmentList]" class="assignment-list" class="card-content-left">
+                    <div cdkDrag fxFlex="30%" fxFlex.xs="100%" fxFlex.sm="33%" *cdkVirtualFor="let assignment of assignments">
+                        <mat-card class="example-card">
+                            <mat-card-header>
+                                <div class="image">
+                                    <img src="https://assignment-frontend2021.herokuapp.com/assets/img/{{ assignment.cours.photoProf }}" class="img-circle elevation-2"
+                                        alt="User Image">
+                                </div>
+                                <mat-card-title>{{ assignment.nom }}</mat-card-title>
+                                <mat-card-subtitle>{{ assignment.auteur }}</mat-card-subtitle>
+                                <mat-card-subtitle>{{ assignment.dateDeRendu | date }}</mat-card-subtitle>
+                            </mat-card-header>
+                            <img mat-card-image [src]="'assets/img/'+assignment.cours.photoMatiere">
+                            <mat-card-actions>
+                                <button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above"
+                                (click)="onEditAssignement(assignment)" matTooltip="Modifier" matTooltipHideDelay="10">
+                                <mat-icon>mode_edit</mat-icon>
+                                </button>
+                                <button mat-icon-button>
+                                    <mat-icon mat-icon-button #tooltip="matTooltip" matTooltipPosition="above"
+                                        matTooltip="Supprimer" matTooltipHideDelay="10">delete</mat-icon>
+                                </button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
                 </div>
+                <section *ngIf="isLoadignSpinner" class="progress_spinner">
+                    <mat-spinner class="example-margin" color="color" mode="indeterminate" diameter="40">
+                    </mat-spinner>
+                </section>
+            </cdk-virtual-scroll-viewport>
             </div>
-        </div>
-        <div fxFlex="auto" class="assignment-content content-left" cdkDropList #doneAssignmentList="cdkDropList" [cdkDropListData]="assignmentsRendus" [cdkDropListConnectedTo]="[assignmentList]" (cdkDropListDropped)="onDrop($event)">
-            <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="15px grid" class="assignment-list">
-                <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" cdkDrag *ngFor="let assignment of assignmentsRendus">
-                    <mat-card class="mat-elevation-z5" class="assignment-block">
-                        <mat-card-header>
-                            <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + assignment.cours.photoProf + ')'}"></div>
-                            <mat-card-title>{{ assignment.nom }}</mat-card-title>
-                            <mat-card-subtitle>{{ assignment.auteur }}</mat-card-subtitle>
-                            <mat-card-subtitle>{{ assignment.dateDeRendu | date }}</mat-card-subtitle>
-                        </mat-card-header>
-                        <img mat-card-sm-image [src]="assignment.cours.photoMatiere">
-                        <mat-card-content>
-                            <p>Test</p>
-                        </mat-card-content>
-                        <mat-card-actions fxFlexAlign="end" align="end">
-                            <button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above" matTooltip="Modifier" matTooltipHideDelay="10">
-                          <mat-icon>mode_edit</mat-icon>
-                        </button>
-                            <button mat-icon-button>
-                          <mat-icon mat-icon-button #tooltip="matTooltip" matTooltipPosition="above" matTooltip="Supprimer" matTooltipHideDelay="10">delete</mat-icon>
-                        </button>
-                        </mat-card-actions>
-                    </mat-card>
+
+            <div fxFlex="auto" class="assignment-content content-left" cdkDropList #doneAssignmentList="cdkDropList"
+            [cdkDropListData]="assignmentsRendus" [cdkDropListConnectedTo]="[assignmentList]"
+            (cdkDropListDropped)="onDrop($event)">
+            <h4 class="card-title-rendu" >
+                Rendu
+            </h4>
+            <cdk-virtual-scroll-viewport #scroller itemSize="50" class="assignmentViewportList">
+                <div fxLayout="row wrap" fxLayoutAlign="start center" class="assignment-list card-content-right">
+                    <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" cdkDrag *cdkVirtualFor="let assignment of assignmentsRendus">
+                        <mat-card class="mat-elevation-z5" class="assignment-block">
+                            <mat-card-header>
+                                <div class="image">
+                                    <img src="https://assignment-frontend2021.herokuapp.com/assets/img/{{ assignment.cours.photoProf }}" class="img-circle elevation-2"
+                                        alt="User Image">
+                                </div>
+                                <mat-card-title>{{ assignment.nom }}</mat-card-title>
+                                <mat-card-subtitle>{{ assignment.auteur }}</mat-card-subtitle>
+                                <mat-card-subtitle>{{ assignment.dateDeRendu | date }}</mat-card-subtitle>
+                            </mat-card-header>
+                            <img mat-card-sm-image [src]="'assets/img/'+assignment.cours.photoMatiere">
+                            <mat-card-content>
+                                <mat-expansion-panel class="mat-elevation-z0" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            Voir remarque
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <p>{{ assignment.remarque }}</p>
+                                </mat-expansion-panel>
+                            </mat-card-content>
+                            <mat-card-actions fxFlexAlign="end" align="end">
+                                <p class="note" style="color:red"> Note: <b>{{ assignment.note }} </b></p>
+                                <button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above"
+                                (click)="onEditAssignement(assignment)" matTooltip="Modifier" matTooltipHideDelay="10">
+                                    <mat-icon>mode_edit</mat-icon>
+                                </button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
                 </div>
-            </div>
+            </cdk-virtual-scroll-viewport>
+            <section *ngIf="isLoadignSpinner" class="progress_spinner">
+                <mat-spinner class="example-margin" color="color" mode="indeterminate" diameter="40">
+                </mat-spinner>
+            </section>
         </div>
     </div>
-</div>
+
 <ng-template #notationDialogTemplate>
     <div class="container" novalidate>
         <form [formGroup]="formNotation" (ngSubmit)="submit()" class="form">
@@ -74,11 +139,13 @@
 
             <mat-form-field class="form-element">
                 <mat-label>Remarque</mat-label>
-                <textarea matInput matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="remarque" name="remarque"></textarea>
+                <textarea matInput matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"
+                    formControlName="remarque" name="remarque"></textarea>
             </mat-form-field>
 
             <div class="form-element">
-                <button mat-raised-button type="submit" mat-flat-button [color]="primary" [disabled]="!formNotation.valid">
+                <button mat-raised-button type="submit" mat-flat-button [color]="primary"
+                    [disabled]="!formNotation.valid" (click)="showSnackbar('Assignment Modifié :)','X','3000')">
                     Modifier
                 </button>
                 <button mat-raised-button [color]="color" [disabled]="disabled" (click)="closeDialog()">
@@ -87,4 +154,6 @@
             </div>
         </form>
     </div>
+    <!-- Fin Assignments -->
 </ng-template>
+

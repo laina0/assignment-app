@@ -1,18 +1,69 @@
-<form ngForm #formAssignment class="form" (submit)="onSubmit($event); formAssignment.reset();">
-    <mat-form-field>
-        <input matInput placeholder="Nom du devoir" required [(ngModel)]="nom" name="nom">
-    </mat-form-field>
+<mat-horizontal-stepper linear #stepper>
+    <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+        <form [formGroup]="firstFormGroup" #formone="ngForm">
+            <ng-template matStepLabel>Nom de l'assignment</ng-template>
+            <mat-form-field>
+                <mat-label>Nom</mat-label>
+                <input matInput placeholder="Nom assignment" formControlName="name" name="name">
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperNext>Suivant</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+        <form [formGroup]="secondFormGroup" #formone="ngForm">
+            <ng-template matStepLabel>Date de rendu</ng-template>
+            <mat-form-field>
+                <mat-label>Choisissez une date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="date" name="date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperPrevious>Retour</button>
+                <button mat-button matStepperNext>Suivant</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup" [editable]="isEditable">
+        <form [formGroup]="thirdFormGroup" #formone="ngForm">
+            <ng-template matStepLabel>Auteur</ng-template>
+            <mat-form-field>
+                <mat-label>Nom de l'auteur</mat-label>
+                <input matInput placeholder="Nom" required formControlName="author" name="author">
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperPrevious>Retour</button>
+                <button mat-button matStepperNext>Suivant</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="fourthFormGroup" [editable]="isEditable">
+        <form [formGroup]="fourthFormGroup" #formone="ngForm">
+            <ng-template matStepLabel>Cours</ng-template>
+            <mat-form-field>
+                <mat-label>Cours</mat-label>
+                <mat-select formControlName="cours" name="cours">
+                    <mat-option matInput *ngFor="let cour of cours" [value]="cour._id" required>
+                        {{ cour.nom }}
+                    </mat-option>                   
+                </mat-select>
+            </mat-form-field>            
+            <div>
+                <button mat-button matStepperPrevious>Retour</button>
+                <button mat-button matStepperNext>Suivant</button>
+            </div>
+        </form>
+    </mat-step>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Choisissez une date</mat-label>
-        <input matInput [matDatepicker]="picker" required [(ngModel)]="dateDeRendu" name="date">
-
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-
-    <button mat-stroked-button color="primary">
-    Ajouter un devoir
-  </button>
-</form>
+    <mat-step>
+        <ng-template matStepLabel>Fin</ng-template>
+        <p>Assignment prêt.</p>
+        <div>
+            <button mat-button matStepperPrevious>Retour</button>
+            <button mat-button (click)="stepper.reset()">Reinitialiser</button>
+            <button mat-button (click)="onSubmit($event)" (click)="showSnackbar('Assignment ajouté :)','X','3000')" >Ajouter</button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>

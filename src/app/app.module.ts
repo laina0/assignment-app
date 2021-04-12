@@ -17,13 +17,20 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
 
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatSelectModule } from '@angular/material/select';
+
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { RenduDirective } from './shared/rendu.directive';
@@ -37,6 +44,7 @@ import { AuthGuard } from './shared/auth.guard';
 import { LoginFormComponent } from './authentication/login-form/login-form.component';
 import { AuthInterceptor } from './shared/auth.interceptors';
 import { DialogModule } from './dialog/dialog.module';
+import { SnackbarAssignmentComponent } from './assignments/snackbar-assignment/snackbar-assignment.component';
 
 const routes: Routes = [
   {
@@ -81,8 +89,10 @@ const routes: Routes = [
     AssignmentDetailComponent,
     AddAssignmentComponent,
     EditAssigmentComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    SnackbarAssignmentComponent
   ],
+  exports: [MatSidenavModule, AssignmentsComponent], 
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -101,7 +111,12 @@ const routes: Routes = [
     MatExpansionModule,
     DialogModule,
     MatTooltipModule,
-    MatProgressBarModule
+    MatStepperModule,
+    MatProgressBarModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    ScrollingModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     {

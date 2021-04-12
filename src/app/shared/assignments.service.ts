@@ -22,8 +22,8 @@ export class AssignmentsService {
     return this.http.get<Assignment[]>(url);
   }
 
-  getAssignmentsPagine(page: number, limit: number): Observable<any> {
-    const url = `${environment.url}/assignments` + '?page=' + page + '&limit=' + limit;
+  getAssignmentsPagine(page: number, limit: number, rendu: boolean): Observable<any> {
+    const url = `${environment.url}/assignments` + '?page=' + page + '&limit=' + limit+ '&rendu='+rendu;
 
     return this.http.get<Assignment[]>(url);
   }
@@ -41,19 +41,13 @@ export class AssignmentsService {
   addAssignment(assignment: Assignment): Observable<string> {
 
     const url = `${environment.url}/assignments`;
-    const data = {
-      id: this.generateId(),
-      nom: assignment.nom,
-      dateDeRendu: assignment.dateDeRendu,
-      rendu: assignment.rendu,
-    };
+    assignment.id = this.generateId();
 
-    return this.http.post<string>(url, data, {}).pipe(
+    return this.http.post<string>(url, assignment, {}).pipe(
       // tslint:disable-next-line: no-shadowed-variable
-      switchMap(() => {
-        return of('Success add data');
+      switchMap((message: string) => {
+        return of(message);
       }),
-      tap( _ => { console.log('debug'); }),
       catchError(error => of(error))
     );
   }

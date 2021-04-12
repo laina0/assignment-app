@@ -23,6 +23,7 @@
         "@angular/platform-browser": "~11.2.4",
         "@angular/platform-browser-dynamic": "~11.2.4",
         "@angular/router": "~11.2.4",
+        "admin-lte": "^3.0.5",
         "express": "^4.17.1",
         "ngx-pagination": "^5.0.0",
         "rxjs": "~6.6.0",

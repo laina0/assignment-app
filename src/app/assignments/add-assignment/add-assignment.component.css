@@ -3,3 +3,18 @@
   flex-direction: column;
   margin:5px;
 }
+
+.mat-stepper-horizontal {
+  position: relative;
+  top:50px;
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+
+::ng-deep .custom-style{
+  background-color:white;
+  color:black;
+}
