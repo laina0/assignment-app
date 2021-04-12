@@ -228,8 +228,6 @@ mat-card::ng-deep.mat-card-header-text {
     align-items: center;
     margin: 0 0 13px 15px;
     gap: 3px;
-    overflow-y: scroll;
- 
   }
 
   .card-title-non-rendu{

@@ -142,7 +142,6 @@ export class AssignmentsComponent implements OnInit {
         // les 200ms
       )
       .subscribe((dist) => {
-        console.log('at');
         this.ngZone.run(() => {
           if (this.hasNextPage) {
             this.page = this.nextPage;
@@ -164,7 +163,6 @@ export class AssignmentsComponent implements OnInit {
 
   onPopulate() {
     this.assignmentsService.populate().subscribe(message => {
-      console.log(message);
       return this.router.navigate(['/home'], {replaceUrl: true});
     });
   }
