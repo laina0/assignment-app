@@ -44,7 +44,7 @@
                 <h4 class="card-title-non-rendu">
                     Non rendu
                 </h4>
-                <cdk-virtual-scroll-viewport #scroller itemSize="50" class="assignmentViewportList">
+                <cdk-virtual-scroll-viewport #scroller itemSize="50" class="assignmentViewportList">                   
                 <div fxLayout="row wrap" fxLayoutAlign="start center" cdkDropList
                     #assignmentList="cdkDropList" [cdkDropListData]="assignments"
                     [cdkDropListConnectedTo]="[doneAssignmentList]" class="assignment-list" class="card-content-left">
@@ -73,12 +73,8 @@
                     </div>
                 </div>
                 <section class="progress_spinner">
-                    <mat-progress-spinner
-                    class="example-margin"
-                    color="color"
-                    mode="indeterminate"
-                    diameter="40">
-                </mat-progress-spinner>        
+                    <mat-spinner class="example-margin" color="color" mode="indeterminate" diameter="40">
+                    </mat-spinner>
                 </section>
             </cdk-virtual-scroll-viewport>
             </div>

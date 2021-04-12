@@ -253,6 +253,5 @@ mat-card::ng-deep.mat-card-header-text {
 
   .progress_spinner {
     display: flex;
-    align-content: center;
-    align-items: center; 
+    margin-left: 367px;
   }
