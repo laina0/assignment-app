@@ -80,13 +80,21 @@
                 </section>
             </cdk-virtual-scroll-viewport>
             </div>
+
+            <div fxFlex="auto" class="assignment-content content-left" cdkDropList #doneAssignmentList="cdkDropList"
+            [cdkDropListData]="assignmentsRendus" [cdkDropListConnectedTo]="[assignmentList]"
+            (cdkDropListDropped)="onDrop($event)">
+            <h4 class="card-title-rendu" >
+                Rendu
+            </h4>
             <cdk-virtual-scroll-viewport #scroller itemSize="50" class="assignmentViewportList">
                 <div fxLayout="row wrap" fxLayoutAlign="start center" class="assignment-list card-content-right">
                     <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" cdkDrag *cdkVirtualFor="let assignment of assignmentsRendus">
                         <mat-card class="mat-elevation-z5" class="assignment-block">
                             <mat-card-header>
-                                <div mat-card-avatar
-                                    [ngStyle]="{'background-image': 'url(assets/img/' + assignment.cours.photoProf + ')'}">
+                                <div class="image">
+                                    <img src="http://localhost:4200/assets/img/{{ assignment.cours.photoProf }}" class="img-circle elevation-2"
+                                        alt="User Image">
                                 </div>
                                 <mat-card-title>{{ assignment.nom }}</mat-card-title>
                                 <mat-card-subtitle>{{ assignment.auteur }}</mat-card-subtitle>
@@ -114,7 +122,10 @@
                     </div>
                 </div>
             </cdk-virtual-scroll-viewport>
-
+            <section class="progress_spinner">
+                <mat-spinner class="example-margin" color="color" mode="indeterminate" diameter="40">
+                </mat-spinner>
+            </section>
         </div>
     </div>
 
@@ -144,3 +155,5 @@
         </form>
     </div>
     <!-- Fin Assignments -->
+</ng-template>
+

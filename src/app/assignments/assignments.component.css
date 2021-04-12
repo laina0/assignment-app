@@ -23,7 +23,7 @@ mat-toolbar {
 
 mat-card img {
     object-fit: cover;
-    width: 100%;
+    width: 80%;
     height: 70px;
 }
 
