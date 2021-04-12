@@ -23,10 +23,11 @@
         </button>
         <span>Liste des assignments </span>
         <span class="example-spacer"></span>
-        <button mat-icon-button class="example-icon favorite-icon" aria-label="populate DB" (click)="onPopulate()">
+        <button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above" matTooltip="Peupler DB" matTooltipHideDelay="10" class="example-icon favorite-icon" aria-label="populate DB" (click)="onPopulate()">
             <mat-icon>pregnant_woman</mat-icon>
         </button>
-        <button mat-icon-button class="add-icon" aria-label="add buttom icon" (click)="onAddAssignmentBtnClick()">
+        <button mat-icon-button class="add-icon" aria-label="add buttom icon" (click)="onAddAssignmentBtnClick()" 
+        #tooltip="matTooltip" matTooltipPosition="above" matTooltip="Ajouter" matTooltipHideDelay="10">
             <mat-icon>assignment</mat-icon>
         </button>        
     </mat-toolbar>
