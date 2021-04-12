@@ -110,6 +110,7 @@
                             </mat-expansion-panel>                        
                         </mat-card-content>
                         <mat-card-actions fxFlexAlign="end" align="end">
+                            <p class="note" style="color:red"> Note: <b>{{ assignment.note }} </b></p>
                             <button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above"
                             (click)="onEditAssignement(assignment)" matTooltip="Modifier" matTooltipHideDelay="10">
                                 <mat-icon>mode_edit</mat-icon>
