@@ -30,6 +30,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AssignmentsComponent } from './assignments/assignments.component';
 import { RenduDirective } from './shared/rendu.directive';
@@ -114,7 +115,8 @@ const routes: Routes = [
     MatProgressBarModule,
     MatSelectModule,
     MatSnackBarModule,
-    ScrollingModule
+    ScrollingModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     {

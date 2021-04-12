@@ -22,8 +22,8 @@ export class AssignmentsService {
     return this.http.get<Assignment[]>(url);
   }
 
-  getAssignmentsPagine(page: number, limit: number): Observable<any> {
-    const url = `${environment.url}/assignments` + '?page=' + page + '&limit=' + limit;
+  getAssignmentsPagine(page: number, limit: number, rendu: boolean): Observable<any> {
+    const url = `${environment.url}/assignments` + '?page=' + page + '&limit=' + limit+ '&rendu='+rendu;
 
     return this.http.get<Assignment[]>(url);
   }

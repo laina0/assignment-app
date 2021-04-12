@@ -250,3 +250,9 @@ mat-card::ng-deep.mat-card-header-text {
     margin-top: 15px;
     font-weight: bold;
   }
+
+  .progress_spinner {
+    display: flex;
+    align-content: center;
+    align-items: center; 
+  }

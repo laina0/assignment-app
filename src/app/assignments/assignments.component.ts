@@ -80,16 +80,21 @@ export class AssignmentsComponent implements OnInit {
       this.page = +queryParams.page || 1;
       this.limit = +queryParams.limit || 10;
 
-      this.getAssignments();
+      this.getAssignments(true);
+      this.getAssignments(false);
     });
   }
 
-  getAssignments() {
+  getAssignments(rendu: boolean) {
     this.isLoader = true;
-    this.assignmentsService.getAssignmentsPagine(this.page, this.limit)
+    this.assignmentsService.getAssignmentsPagine(this.page, this.limit, rendu)
     .subscribe(data => {
-      this.assignments = this.assignments.concat(data.docs.filter(obj => obj.rendu === false));
-      this.assignmentsRendus = this.assignmentsRendus.concat(data.docs.filter(obj => obj.rendu === true));
+      if (!rendu) {
+        this.assignments = data.docs;
+      } else {
+        this.assignmentsRendus = data.docs;
+      }
+      
       this.page = data.page;
       this.limit = data.limit;
       this.totalDocs = data.totalDocs;
@@ -103,10 +108,9 @@ export class AssignmentsComponent implements OnInit {
   }
 
   getAssignmentForScrolling() {
-    this.assignmentsService.getAssignmentsPagine(this.page, this.limit)
+    this.assignmentsService.getAssignmentsPagine(this.page, this.limit, false)
     .subscribe(data => {
-      this.assignments = this.assignments.concat(data.docs.filter(obj => obj.rendu === false));
-      this.assignmentsRendus = this.assignmentsRendus.concat(data.docs.filter(obj => obj.rendu === true));
+      this.assignments = this.assignments.concat(data.docs);
       this.page = data.page;
       this.limit = data.limit;
       this.totalDocs = data.totalDocs;
@@ -120,6 +124,7 @@ export class AssignmentsComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+    
     // Appelé automatiquement après l'affichage, donc l'élément scroller aura
     // et affiché et ne vaudra pas "undefined" (ce qui aurait été le cas dans ngOnInit)
 
@@ -137,6 +142,7 @@ export class AssignmentsComponent implements OnInit {
         // les 200ms
       )
       .subscribe((dist) => {
+        console.log('at');
         this.ngZone.run(() => {
           if (this.hasNextPage) {
             this.page = this.nextPage;
@@ -144,6 +150,7 @@ export class AssignmentsComponent implements OnInit {
           }
         });
       });
+
   }
 
   onDeleteAssignment(event) {
@@ -157,6 +164,7 @@ export class AssignmentsComponent implements OnInit {
 
   onPopulate() {
     this.assignmentsService.populate().subscribe(message => {
+      console.log(message);
       return this.router.navigate(['/home'], {replaceUrl: true});
     });
   }
@@ -203,6 +211,7 @@ export class AssignmentsComponent implements OnInit {
   }
 
   onEditAssignement(assignment: Assignment) {
+    this.formNotation.reset();
     this.currentAssignment = assignment;
     this.dispatchDialog();
   }
@@ -246,7 +255,8 @@ export class AssignmentsComponent implements OnInit {
               this.eventAssignment.previousIndex,
               this.eventAssignment.currentIndex);
             this.closeDialog();
-            this.getAssignments();
+            this.getAssignments(true);
+            this.getAssignments(false);
       });
     }
   }
