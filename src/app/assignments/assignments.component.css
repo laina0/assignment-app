@@ -252,7 +252,7 @@ mat-card::ng-deep.mat-card-header-text {
   }
 
  .note{
-   position: fixed;
+   position: absolute;
    margin-right: 162px;
    
  }
