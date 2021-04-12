@@ -44,7 +44,7 @@
                 <h4 class="card-title-non-rendu">
                     Non rendu
                 </h4>
-                <cdk-virtual-scroll-viewport #scroller itemSize="50" class="assignmentViewportList">
+                <cdk-virtual-scroll-viewport #scroller itemSize="50" class="assignmentViewportList">                   
                 <div fxLayout="row wrap" fxLayoutAlign="start center" cdkDropList
                     #assignmentList="cdkDropList" [cdkDropListData]="assignments"
                     [cdkDropListConnectedTo]="[doneAssignmentList]" class="assignment-list" class="card-content-left">
@@ -73,12 +73,8 @@
                     </div>
                 </div>
                 <section class="progress_spinner">
-                    <mat-progress-spinner
-                    class="example-margin"
-                    color="color"
-                    mode="indeterminate"
-                    diameter="40">
-                </mat-progress-spinner>        
+                    <mat-spinner class="example-margin" color="color" mode="indeterminate" diameter="40">
+                    </mat-spinner>
                 </section>
             </cdk-virtual-scroll-viewport>
             </div>
@@ -103,8 +99,15 @@
                             <mat-card-subtitle>{{ assignment.dateDeRendu | date }}</mat-card-subtitle>
                         </mat-card-header>
                         <img mat-card-sm-image [src]="'assets/img/'+assignment.cours.photoMatiere">
-                        <mat-card-content>
-                            <p></p>
+                        <mat-card-content>                        
+                            <mat-expansion-panel class="mat-elevation-z0" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Voir remarque
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <p>{{ assignment.remarque }}</p>
+                            </mat-expansion-panel>                        
                         </mat-card-content>
                         <mat-card-actions fxFlexAlign="end" align="end">
                             <button mat-icon-button #tooltip="matTooltip" matTooltipPosition="above"
