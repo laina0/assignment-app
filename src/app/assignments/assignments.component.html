@@ -1,9 +1,20 @@
 <!-- Début Toolbar -->
 <p>
-    <mat-toolbar class="example-header">
+    <mat-toolbar class="example-header">   
+        <span><img src="assets/img/adminLogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"></span> 
         <span class="example-spacer"></span>
+        <span>Assignment</span>
         <span class="example-spacer"></span>
-        <div class="user-panel d-flex">
+        <button class="logout" mat-icon-button (click)="onLogout()" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+                <mat-icon>power_settings_new</mat-icon>
+                <span>Se déconnecter</span>
+            </button>
+        </mat-menu> 
+        <div class="user-panel d-flex">            
             <div class="image">
                 <img src="assets/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
@@ -19,7 +30,7 @@
 <p>
     <mat-toolbar class="header-nav">
         <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-            <mat-icon>menu</mat-icon>
+            <mat-icon>dashboard</mat-icon>
         </button>
         <span>Liste des assignments </span>
         <span class="example-spacer"></span>

@@ -304,4 +304,9 @@ export class AssignmentsComponent implements OnInit {
     });
   }
 
+  onLogout() {
+    localStorage.removeItem('expirationDate');
+    localStorage.removeItem('token');
+    this.router.navigate(['/authenticate']);
+  }
 }
