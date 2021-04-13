@@ -5,7 +5,7 @@
         <span class="example-spacer"></span>
         <span>Assignment</span>
         <span class="example-spacer"></span>
-        <button class="logout" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <button class="logout" mat-icon-button (click)="onLogout()" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
             <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
