@@ -19,6 +19,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
+import { MatMenuModule} from '@angular/material/menu';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -116,7 +117,8 @@ const routes: Routes = [
     MatSelectModule,
     MatSnackBarModule,
     ScrollingModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatMenuModule
   ],
   providers: [
     {

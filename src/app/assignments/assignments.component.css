@@ -182,9 +182,10 @@ mat-card::ng-deep.mat-card-header-text {
   }
   
   .brand-image {
-    margin-top: -.5rem;
+    margin-top: 0.5rem;
     margin-right: .2rem;
-    height: 33px;
+    height: 50px;
+    margin-left: 10px;
   }
 
   .img-circle {
@@ -255,4 +256,9 @@ mat-card::ng-deep.mat-card-header-text {
  ::ng-deep .custom-style{
   background-color:white;
   color:black;
+}
+
+.logout{
+  margin-top: -13px;
+  margin-left: 25px;
 }
