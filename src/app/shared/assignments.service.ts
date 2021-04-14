@@ -72,7 +72,7 @@ export class AssignmentsService {
 
     return this.http.delete(url).pipe(
       switchMap((data: any) => {
-        return this.http.post<string>(url, data, {}).pipe(
+        return this.http.delete<string>(url, data).pipe(
           // tslint:disable-next-line: no-shadowed-variable
           switchMap(() => {
             return of('Success add data');

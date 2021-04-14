@@ -160,12 +160,13 @@ export class AssignmentsComponent implements OnInit {
 
   }
 
-  onDeleteAssignment(event) {
+  onDeleteAssignment(_id: number) {
     // event = l'assignment à supprimer
-
     // this.assignments.splice(index, 1);
-    this.assignmentsService.deleteAssignment(event)
+    this.assignmentsService.deleteAssignment(_id)
       .subscribe(message => {
+        this.showSnackbar('Assignment supprimée avec success', 'X', '3000');
+        this.getAssignments(false);
       });
   }
 
