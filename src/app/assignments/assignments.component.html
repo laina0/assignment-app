@@ -5,23 +5,17 @@
         <span class="example-spacer"></span>
         <span>Assignment</span>
         <span class="example-spacer"></span>
-        <button class="logout" mat-icon-button (click)="onLogout()" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-            <mat-icon>more_vert</mat-icon>
-        </button>
+        <div class="user-panel d-flex">  
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <span class="logout"><b>Username</b></span> 
+            </button>
+        </div>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item>
-                <mat-icon>power_settings_new</mat-icon>
+            <button mat-menu-item  (click)="onLogout()">
+                <mat-icon>input</mat-icon>
                 <span>Se déconnecter</span>
             </button>
-        </mat-menu> 
-        <div class="user-panel d-flex">            
-            <div class="image">
-                <img src="assets/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-            </div>
-            <div class="info">
-                <a href="#" class="d-block"></a>
-            </div>
-        </div>
+        </mat-menu>   
         <mat-progress-bar mode="indeterminate" *ngIf="isLoader" value="60" class="progressbar">
         </mat-progress-bar>
     </mat-toolbar>
