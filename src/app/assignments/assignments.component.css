@@ -201,6 +201,16 @@ mat-card::ng-deep.mat-card-header-text {
     padding-left: 0.8rem;
   }
 
+  .user-panel .info {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .user-panel .info {
+    display: inline-block;
+    padding: 5px 5px 5px 10px;
+  }
+
   .user-panel img {
     height: auto;
     width: 2.1rem;
@@ -259,6 +269,6 @@ mat-card::ng-deep.mat-card-header-text {
 }
 
 .logout{
-  margin-top: -13px;
-  margin-left: 25px;
+  margin-left: -40px;
+  
 }
