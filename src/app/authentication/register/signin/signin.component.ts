@@ -50,7 +50,7 @@ export class SigninComponent implements OnInit {
   // https://jasonwatmore.com/post/2020/07/07/angular-10-reactive-forms-validation-example
   private initForm() {
     return this.formBuilder.group({
-      username: [null],
+      username: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
       confirmPassword: [null, Validators.required]
