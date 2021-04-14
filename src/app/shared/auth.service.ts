@@ -35,7 +35,7 @@ export class AuthService {
       switchMap((res: any) => {
         this.loggedIn = true;
         this.admin = true;
-        this.saveAuthData(res.token);
+        this.saveAuthData(res.token, res.data.username);
         return of(this.getUser(res));
       }),
       tap(user => this.user.next(user))
@@ -44,7 +44,6 @@ export class AuthService {
 
   public singIn(username: string, email: string, password: string) {
     const url = `${environment.url}/account`;
-    console.log(url);
     const data = {
       username: username,
       email: email,
@@ -81,11 +80,12 @@ export class AuthService {
       });
   }
 
-  private saveAuthData(token: string) {
+  private saveAuthData(token: string, username?: string) {
       const now = new Date();
       const expirationDate = (now.getTime() + 3600 * 1000).toString();
       localStorage.setItem('expirationDate', expirationDate);
       localStorage.setItem('token', token);
+      localStorage.setItem('username', username);
   }
 }
 

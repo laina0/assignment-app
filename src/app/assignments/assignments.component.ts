@@ -52,6 +52,7 @@ export class AssignmentsComponent implements OnInit {
   currentAssignment: Assignment;
 
   formNotation: FormGroup;
+  username: string = '';
 
   // on injecte le service de gestion des assignments
   constructor(private assignmentsService: AssignmentsService,
@@ -76,6 +77,7 @@ export class AssignmentsComponent implements OnInit {
     this.formNotation = this.initNotationForm();
     this.isLoader = false;
     this.isLoadignSpinner = false;
+    this.username = localStorage.getItem('username');
 
     // on utilise le service pour récupérer les
     // assignments à afficher
@@ -312,6 +314,7 @@ export class AssignmentsComponent implements OnInit {
   onLogout() {
     localStorage.removeItem('expirationDate');
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
     this.router.navigate(['/authenticate']);
   }
 }
