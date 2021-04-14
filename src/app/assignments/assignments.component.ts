@@ -88,6 +88,10 @@ export class AssignmentsComponent implements OnInit {
     });
   }
 
+  onRefreshAssigment(event: boolean) {
+    this.getAssignments(event);
+  }
+
   getAssignments(rendu: boolean) {
     this.isLoader = true;
     this.assignmentsService.getAssignmentsPagine(this.page, this.limit, rendu)
@@ -282,16 +286,6 @@ export class AssignmentsComponent implements OnInit {
 
   onAddAssignmentBtnClick() {
     this.formVisible = !this.formVisible;
-  }
-
-  onNouvelAssignment(event) {
-    // l'event est l'assignment ajouté par le composant
-    // fils qui a émis l'événement
-
-    this.assignments.push(event);
-
-    // on cache le formulaire, et on re-affiche la liste
-    this.formVisible=false;
   }
 
   showSnackbar(content, action, duration) {

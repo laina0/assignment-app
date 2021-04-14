@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { CoursService } from 'src/app/shared/cours.service';
@@ -17,6 +17,7 @@ import { AssignmentsComponent } from '../assignments.component';
   styleUrls: ['./add-assignment.component.css'],
 })
 export class AddAssignmentComponent implements OnInit {
+  @Output() refreshAssigment: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   cours: Cours[] = [];
   // Pour les steppers
@@ -64,7 +65,7 @@ export class AddAssignmentComponent implements OnInit {
 
       this.assignmentsService.addAssignment(assignment)
         .subscribe(message => {
-            this.router.navigate(['/home']);
+            this.refreshAssigment.emit(false);
         });
     }
   }

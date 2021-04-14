@@ -45,7 +45,7 @@
 </p>
 <!-- Fin Toolbar -->
 <!-- Début Stepper -->
-<app-add-assignment *ngIf="formVisible" (nouvelAssignment)="onNouvelAssignment($event)">
+<app-add-assignment *ngIf="formVisible" (refreshAssigment)="onRefreshAssigment($event); formVisible = false">
 
 </app-add-assignment>
 <!-- Fin Stepper -->
