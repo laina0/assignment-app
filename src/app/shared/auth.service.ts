@@ -40,7 +40,19 @@ export class AuthService {
       }),
       tap(user => this.user.next(user))
     );
-}
+  }
+
+  public singIn(username: string, email: string, password: string) {
+    const url = `${environment.url}/account`;
+    console.log(url);
+    const data = {
+      username: username,
+      email: email,
+      password: password
+    };
+
+    return this.http.post<User>(url, data, {});
+  }
 
   logOut() {
     this.loggedIn = false;

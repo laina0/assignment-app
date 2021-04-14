@@ -46,6 +46,7 @@ import { LoginFormComponent } from './authentication/login-form/login-form.compo
 import { AuthInterceptor } from './shared/auth.interceptors';
 import { DialogModule } from './dialog/dialog.module';
 import { SnackbarAssignmentComponent } from './assignments/snackbar-assignment/snackbar-assignment.component';
+import { SigninComponent } from './authentication/register/signin/signin.component';
 
 const routes: Routes = [
   {
@@ -79,6 +80,10 @@ const routes: Routes = [
   {
     path: 'authenticate',
     component: LoginFormComponent
+  },
+  {
+    path: 'register',
+    component: SigninComponent
   }
 ];
 @NgModule({
@@ -91,7 +96,8 @@ const routes: Routes = [
     AddAssignmentComponent,
     EditAssigmentComponent,
     LoginFormComponent,
-    SnackbarAssignmentComponent
+    SnackbarAssignmentComponent,
+    SigninComponent
   ],
   exports: [MatSidenavModule, AssignmentsComponent], 
   imports: [
