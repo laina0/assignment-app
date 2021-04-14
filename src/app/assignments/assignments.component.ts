@@ -218,7 +218,17 @@ export class AssignmentsComponent implements OnInit {
   }
 
   onEditAssignement(assignment: Assignment) {
-    this.formNotation.reset();
+    
+    if (assignment.rendu) {
+      this.formNotation.patchValue({
+        notation: assignment.note,
+        remarque: assignment.remarque
+      });
+      
+    } else {
+      this.formNotation.reset();
+    }
+    
     this.currentAssignment = assignment;
     this.dispatchDialog();
   }
