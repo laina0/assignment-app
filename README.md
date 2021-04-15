@@ -1,32 +1,26 @@
-# AssignmentApp
+# Projet Angular AssignmentApp  
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
+Cette application permet de gérer des assignments. 
 
-## Development server
+# Les contributeurs
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+38- Sedera Nirina RANDRIAMANANTENASOA 
+20- Fehiniaina RAHARINIVOSON 
 
-## Code scaffolding
+## Comment l'exécuter localement ?
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1- Télécharger le projet  : git clone https://github.com/Fehiniaina/assignment-backend.git
+2- Se positionner sur le dossier du projet: cd assignment-app
+3- Installer les composants utils pour le projet:
+   - ouvrez le dossier assignment-app dans un terminal
+   - npm install
+4- Demmarez le serveur :
+  - ng serve
+  - ouvrez le lien http://localhost:4200/
+   
+   
+## Quelques lien qu'on a utilisé
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
-## Lien utile pour la vue matérial card
 https://zoaibkhan.com/blog/create-a-responsive-card-grid-in-angular-using-flex-layout-part-1/
 https://material.io/components/cards
 https://material.io/components/cards#anatomy
