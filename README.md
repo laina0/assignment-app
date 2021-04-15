@@ -10,16 +10,16 @@ Cette application permet de gérer des assignments.
 ## Comment l'exécuter localement ?
 
 1. Télécharger le projet  : 
-$ git clone https://github.com/Fehiniaina/assignment-backend.git
+- $ git clone https://github.com/Fehiniaina/assignment-backend.git
 
 3. Se positionner sur le dossier du projet et l'ouvrir dans un terminal ensuite:
-$ cd assignment-app
+- $ cd assignment-app
 
 3. Installer les composants utils pour le projet:
-$ npm install
+- $ npm install
 4. Demmarez le serveur:
 $ ng serve
-ouvrez le lien http://localhost:4200/
+- ouvrez le lien http://localhost:4200/
    
    
 ## Quelques lien qu'on a utilisé
