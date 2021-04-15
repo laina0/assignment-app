@@ -22,7 +22,7 @@ $ ng serve
 - ouvrez le lien http://localhost:4200/
    
    
-## Quelques lien qu'on a utilisé
+## Quelques liens qu'on a utilisé
 
 https://zoaibkhan.com/blog/create-a-responsive-card-grid-in-angular-using-flex-layout-part-1/
 https://material.io/components/cards
